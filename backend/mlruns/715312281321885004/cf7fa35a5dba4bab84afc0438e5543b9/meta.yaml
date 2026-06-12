@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/715312281321885004/cf7fa35a5dba4bab84afc0438e5543b9/artifacts
+end_time: 1777170797589
+entry_point_name: ''
+experiment_id: '715312281321885004'
+lifecycle_stage: active
+run_id: cf7fa35a5dba4bab84afc0438e5543b9
+run_name: likeable-cub-470
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777170797549
+status: 3
+tags: []
+user_id: chari

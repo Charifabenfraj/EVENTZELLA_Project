@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/112980595056751746/144266a1721244c397826eedae9e266b/artifacts
+end_time: 1777645547755
+entry_point_name: ''
+experiment_id: '112980595056751746'
+lifecycle_stage: active
+run_id: 144266a1721244c397826eedae9e266b
+run_name: illustrious-hare-680
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777645538377
+status: 3
+tags: []
+user_id: chari

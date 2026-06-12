@@ -1,0 +1,23 @@
+artifact_path: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/685238734087503077/models/m-f36d9e76d6474509a1e34ef42fc90b65/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.5
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.11.1
+model_id: m-f36d9e76d6474509a1e34ef42fc90b65
+model_size_bytes: 4299
+model_uuid: m-f36d9e76d6474509a1e34ef42fc90b65
+prompts: null
+run_id: abf7003b64894bf4ba725d1c8f3c2fa0
+utc_time_created: '2026-05-01 21:13:33.782213'

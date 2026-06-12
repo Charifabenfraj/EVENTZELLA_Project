@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/685238734087503077/2c75aef10fb3414ea16b0cf8c11e5031/artifacts
+end_time: 1777677648033
+entry_point_name: ''
+experiment_id: '685238734087503077'
+lifecycle_stage: active
+run_id: 2c75aef10fb3414ea16b0cf8c11e5031
+run_name: fearless-colt-367
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777677644474
+status: 3
+tags: []
+user_id: chari

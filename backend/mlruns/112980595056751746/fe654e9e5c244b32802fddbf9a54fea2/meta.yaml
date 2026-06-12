@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/112980595056751746/fe654e9e5c244b32802fddbf9a54fea2/artifacts
+end_time: 1777168693666
+entry_point_name: ''
+experiment_id: '112980595056751746'
+lifecycle_stage: active
+run_id: fe654e9e5c244b32802fddbf9a54fea2
+run_name: learned-hog-427
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777168689777
+status: 3
+tags: []
+user_id: chari

@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/299864844011813829/bf1f83e5a2424c7fa59b52e4ad3febca/artifacts
+end_time: 1777677664322
+entry_point_name: ''
+experiment_id: '299864844011813829'
+lifecycle_stage: active
+run_id: bf1f83e5a2424c7fa59b52e4ad3febca
+run_name: bald-steed-502
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777677664294
+status: 3
+tags: []
+user_id: chari

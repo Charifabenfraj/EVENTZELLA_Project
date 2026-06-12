@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/563377571345696732/5665ecaf06424a0dafe3e25c60a3ec75/artifacts
+end_time: 1777677664367
+entry_point_name: ''
+experiment_id: '563377571345696732'
+lifecycle_stage: active
+run_id: 5665ecaf06424a0dafe3e25c60a3ec75
+run_name: youthful-quail-481
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777677664338
+status: 3
+tags: []
+user_id: chari

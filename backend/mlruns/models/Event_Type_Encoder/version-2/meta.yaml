@@ -1,0 +1,16 @@
+creation_timestamp: 1777677657072
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1777677657072
+model_id: m-92f9a49798ee49cabdf4c2ba26931e84
+name: Event_Type_Encoder
+run_id: 12ff844d02864ae0a41aaab758c11728
+run_link: null
+source: models:/m-92f9a49798ee49cabdf4c2ba26931e84
+status: READY
+status_message: null
+storage_location: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/156026209103371922/models/m-92f9a49798ee49cabdf4c2ba26931e84/artifacts
+user_id: null
+version: 2
+workspace: default

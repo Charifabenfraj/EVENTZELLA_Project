@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/563377571345696732/9b55e6bc0c45494c9adf3169f70dbc61/artifacts
+end_time: 1777670027560
+entry_point_name: ''
+experiment_id: '563377571345696732'
+lifecycle_stage: active
+run_id: 9b55e6bc0c45494c9adf3169f70dbc61
+run_name: useful-shad-595
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777670027515
+status: 3
+tags: []
+user_id: chari

@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/715312281321885004/507c7357c12644aa801cc916c32b0934/artifacts
+end_time: 1777677644459
+entry_point_name: ''
+experiment_id: '715312281321885004'
+lifecycle_stage: active
+run_id: 507c7357c12644aa801cc916c32b0934
+run_name: bedecked-moth-746
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777677640179
+status: 3
+tags: []
+user_id: chari

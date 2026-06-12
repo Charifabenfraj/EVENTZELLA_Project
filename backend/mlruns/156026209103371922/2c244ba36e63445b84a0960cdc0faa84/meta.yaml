@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/156026209103371922/2c244ba36e63445b84a0960cdc0faa84/artifacts
+end_time: 1777670341043
+entry_point_name: ''
+experiment_id: '156026209103371922'
+lifecycle_stage: active
+run_id: 2c244ba36e63445b84a0960cdc0faa84
+run_name: dashing-dolphin-292
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777670332540
+status: 3
+tags: []
+user_id: chari

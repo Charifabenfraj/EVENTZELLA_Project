@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/3bbee763baae4b08a964130087ba267e/artifacts
+end_time: 1777165017544
+entry_point_name: ''
+experiment_id: '984502483504791936'
+lifecycle_stage: active
+run_id: 3bbee763baae4b08a964130087ba267e
+run_name: useful-mouse-667
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777165017515
+status: 4
+tags: []
+user_id: chari

@@ -1,0 +1,18 @@
+{
+  "model_name": "cancellation_rate",
+  "model_type": "classification",
+  "metrics": {
+    "accuracy": 0.7407407407407407,
+    "precision": 0.7543172858015437,
+    "recall": 0.7407407407407407,
+    "f1_score": 0.7465166945331104,
+    "test_samples": 81
+  },
+  "parameters": {
+    "n_estimators": 100,
+    "max_depth": 10,
+    "min_samples_split": 5,
+    "min_samples_leaf": 2
+  },
+  "timestamp": "2026-05-02T00:20:36.310267"
+}

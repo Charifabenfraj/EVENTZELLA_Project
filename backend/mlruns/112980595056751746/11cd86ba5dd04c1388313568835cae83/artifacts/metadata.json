@@ -1,0 +1,14 @@
+{
+  "training_date": "2026-04-26T03:52:22.047378",
+  "model_name": "price_regression",
+  "model_type": "regression",
+  "training_samples": 320,
+  "test_samples": 80,
+  "features": [
+    "event_type",
+    "guests",
+    "city",
+    "budget"
+  ],
+  "run_id": "11cd86ba5dd04c1388313568835cae83"
+}

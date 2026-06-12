@@ -1,0 +1,15 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/112980595056751746/bf08b775657f472cb181d9bb2d5dc9b1/artifacts
+deleted_time: 1777166452729
+end_time: 1777143670863
+entry_point_name: ''
+experiment_id: '112980595056751746'
+lifecycle_stage: deleted
+run_id: bf08b775657f472cb181d9bb2d5dc9b1
+run_name: luminous-vole-986
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777143670840
+status: 4
+tags: []
+user_id: chari

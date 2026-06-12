@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/563377571345696732/1504360eee4b4a1cb4e4b386663e49d1/artifacts
+end_time: 1777645914331
+entry_point_name: ''
+experiment_id: '563377571345696732'
+lifecycle_stage: active
+run_id: 1504360eee4b4a1cb4e4b386663e49d1
+run_name: luminous-ape-119
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777645914233
+status: 3
+tags: []
+user_id: chari

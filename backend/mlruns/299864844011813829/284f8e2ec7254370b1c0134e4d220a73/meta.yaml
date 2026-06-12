@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/299864844011813829/284f8e2ec7254370b1c0134e4d220a73/artifacts
+end_time: 1777645575401
+entry_point_name: ''
+experiment_id: '299864844011813829'
+lifecycle_stage: active
+run_id: 284f8e2ec7254370b1c0134e4d220a73
+run_name: receptive-stoat-414
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777645575335
+status: 3
+tags: []
+user_id: chari

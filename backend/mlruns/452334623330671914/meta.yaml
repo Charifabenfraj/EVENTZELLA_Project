@@ -1,0 +1,8 @@
+artifact_location: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/452334623330671914
+creation_time: 1777645564419
+experiment_id: '452334623330671914'
+last_update_time: 1777645564419
+lifecycle_stage: active
+name: Complaint_Risk_NLP
+trace_location: null
+workspace: default

@@ -1,0 +1,40 @@
+artifact_path: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/715312281321885004/models/m-c92e53fdb16b4c078ebf06cf2dff82af/artifacts
+flavors:
+  python_function:
+    artifacts:
+      provider_lookup:
+        path: artifacts\provider_budget_model.pkl
+        uri: D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\models\provider_budget_model.pkl
+    cloudpickle_version: 3.1.2
+    code: null
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pyfunc.model
+    python_model: python_model.pkl
+    python_version: 3.13.5
+    streamable: false
+is_signature_from_type_hint: false
+mlflow_version: 3.11.1
+model_id: m-c92e53fdb16b4c078ebf06cf2dff82af
+model_size_bytes: 114890
+model_uuid: m-c92e53fdb16b4c078ebf06cf2dff82af
+prompts: null
+run_id: 507c7357c12644aa801cc916c32b0934
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "budget", "required": true}, {"type": "string",
+    "name": "city", "required": true}, {"type": "long", "name": "top_k", "required":
+    true}]'
+  outputs: '[{"type": "array", "items": {"type": "object", "properties": {"avg_price":
+    {"type": "double", "required": true}, "city": {"type": "string", "required": true},
+    "fit_score": {"type": "double", "required": true}, "provider": {"type": "string",
+    "required": true}}}, "name": "providers", "required": true}, {"type": "long",
+    "name": "total_candidates", "required": true}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2026-05-01 23:20:40.273265'

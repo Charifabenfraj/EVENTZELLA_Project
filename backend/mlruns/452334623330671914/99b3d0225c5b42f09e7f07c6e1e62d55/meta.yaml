@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/452334623330671914/99b3d0225c5b42f09e7f07c6e1e62d55/artifacts
+end_time: 1777670027410
+entry_point_name: ''
+experiment_id: '452334623330671914'
+lifecycle_stage: active
+run_id: 99b3d0225c5b42f09e7f07c6e1e62d55
+run_name: gregarious-doe-849
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777670020264
+status: 3
+tags: []
+user_id: chari

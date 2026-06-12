@@ -1,0 +1,10 @@
+artifact_location: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/models/m-61d5ce79bb7d4fe9bd4cbc5081a5d326/artifacts
+creation_timestamp: 1777669975035
+experiment_id: '984502483504791936'
+last_updated_timestamp: 1777669990569
+model_id: m-61d5ce79bb7d4fe9bd4cbc5081a5d326
+model_type: null
+name: model
+source_run_id: 3b92a0720d4f4a03a3807c6ddb4a7821
+status: 2
+status_message: null

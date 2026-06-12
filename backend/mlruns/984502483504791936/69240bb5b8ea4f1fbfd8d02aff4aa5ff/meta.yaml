@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/69240bb5b8ea4f1fbfd8d02aff4aa5ff/artifacts
+end_time: 1777645883537
+entry_point_name: ''
+experiment_id: '984502483504791936'
+lifecycle_stage: active
+run_id: 69240bb5b8ea4f1fbfd8d02aff4aa5ff
+run_name: bemused-wren-430
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777645873329
+status: 3
+tags: []
+user_id: chari

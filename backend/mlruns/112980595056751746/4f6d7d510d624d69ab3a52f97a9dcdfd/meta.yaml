@@ -1,0 +1,15 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/112980595056751746/4f6d7d510d624d69ab3a52f97a9dcdfd/artifacts
+deleted_time: 1777166452744
+end_time: 1777143826567
+entry_point_name: ''
+experiment_id: '112980595056751746'
+lifecycle_stage: deleted
+run_id: 4f6d7d510d624d69ab3a52f97a9dcdfd
+run_name: magnificent-rat-89
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777143826542
+status: 4
+tags: []
+user_id: chari

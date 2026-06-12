@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/73f75563083c4f26b1a533b8e2a7106b/artifacts
+end_time: 1777168513403
+entry_point_name: ''
+experiment_id: '984502483504791936'
+lifecycle_stage: active
+run_id: 73f75563083c4f26b1a533b8e2a7106b
+run_name: rebellious-pug-251
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777168507303
+status: 3
+tags: []
+user_id: chari

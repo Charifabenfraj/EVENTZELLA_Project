@@ -1,0 +1,8 @@
+artifact_location: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/306849900542742893
+creation_time: 1777670420094
+experiment_id: '306849900542742893'
+last_update_time: 1777670420094
+lifecycle_stage: active
+name: KMeans_Event_Clustering
+trace_location: null
+workspace: default

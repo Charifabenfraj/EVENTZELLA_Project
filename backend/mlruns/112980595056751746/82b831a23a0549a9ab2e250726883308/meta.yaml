@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/112980595056751746/82b831a23a0549a9ab2e250726883308/artifacts
+end_time: 1777164959445
+entry_point_name: ''
+experiment_id: '112980595056751746'
+lifecycle_stage: active
+run_id: 82b831a23a0549a9ab2e250726883308
+run_name: bouncy-ram-442
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777164959422
+status: 4
+tags: []
+user_id: chari

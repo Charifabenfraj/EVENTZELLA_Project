@@ -1,0 +1,15 @@
+{
+  "params": {
+    "model_kind": "lookup",
+    "provider_count": 1504,
+    "city_count": 24,
+    "source": "previous-provider-budget-pkl"
+  },
+  "metrics": {
+    "provider_count": 1504.0,
+    "city_count": 24.0,
+    "min_avg_price": 234.0,
+    "max_avg_price": 75720.0,
+    "mean_avg_price": NaN
+  }
+}

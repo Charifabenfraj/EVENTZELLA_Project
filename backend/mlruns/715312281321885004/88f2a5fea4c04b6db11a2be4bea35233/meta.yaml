@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/715312281321885004/88f2a5fea4c04b6db11a2be4bea35233/artifacts
+end_time: 1777645557260
+entry_point_name: ''
+experiment_id: '715312281321885004'
+lifecycle_stage: active
+run_id: 88f2a5fea4c04b6db11a2be4bea35233
+run_name: omniscient-yak-168
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777645547839
+status: 3
+tags: []
+user_id: chari

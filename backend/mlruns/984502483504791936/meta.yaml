@@ -1,0 +1,8 @@
+artifact_location: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936
+creation_time: 1777143670607
+experiment_id: '984502483504791936'
+last_update_time: 1777143670607
+lifecycle_stage: active
+name: Cancellation_Rate_Classifier
+trace_location: null
+workspace: default

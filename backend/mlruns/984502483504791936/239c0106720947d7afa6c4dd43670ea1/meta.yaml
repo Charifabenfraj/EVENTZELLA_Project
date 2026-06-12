@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/239c0106720947d7afa6c4dd43670ea1/artifacts
+end_time: 1777144255202
+entry_point_name: ''
+experiment_id: '984502483504791936'
+lifecycle_stage: active
+run_id: 239c0106720947d7afa6c4dd43670ea1
+run_name: skittish-mule-353
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777144255175
+status: 4
+tags: []
+user_id: chari

@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/112980595056751746/9dbfd3ebe4a94698b4a3b14227694d5c/artifacts
+end_time: 1777171067702
+entry_point_name: ''
+experiment_id: '112980595056751746'
+lifecycle_stage: active
+run_id: 9dbfd3ebe4a94698b4a3b14227694d5c
+run_name: luxuriant-koi-480
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777171063665
+status: 3
+tags: []
+user_id: chari

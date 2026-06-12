@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/715312281321885004/501843670aa44402bb8cd595487334af/artifacts
+end_time: 1777171942123
+entry_point_name: ''
+experiment_id: '715312281321885004'
+lifecycle_stage: active
+run_id: 501843670aa44402bb8cd595487334af
+run_name: charming-horse-373
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777171942080
+status: 3
+tags: []
+user_id: chari

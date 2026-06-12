@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/299864844011813829/953e8cefab714218b629528c03b363e2/artifacts
+end_time: 1777645914214
+entry_point_name: ''
+experiment_id: '299864844011813829'
+lifecycle_stage: active
+run_id: 953e8cefab714218b629528c03b363e2
+run_name: debonair-bass-367
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777645914178
+status: 3
+tags: []
+user_id: chari

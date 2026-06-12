@@ -1,0 +1,16 @@
+{
+  "dataframe_split": {
+    "columns": [
+      "budget",
+      "city",
+      "top_k"
+    ],
+    "data": [
+      [
+        6000.0,
+        "Tunis",
+        5
+      ]
+    ]
+  }
+}

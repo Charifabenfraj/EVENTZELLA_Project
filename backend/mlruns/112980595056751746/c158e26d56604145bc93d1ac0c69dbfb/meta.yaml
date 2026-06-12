@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/112980595056751746/c158e26d56604145bc93d1ac0c69dbfb/artifacts
+end_time: 1777677640107
+entry_point_name: ''
+experiment_id: '112980595056751746'
+lifecycle_stage: active
+run_id: c158e26d56604145bc93d1ac0c69dbfb
+run_name: judicious-mule-717
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777677636375
+status: 3
+tags: []
+user_id: chari

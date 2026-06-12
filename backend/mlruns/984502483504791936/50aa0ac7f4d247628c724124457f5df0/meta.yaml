@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/50aa0ac7f4d247628c724124457f5df0/artifacts
+end_time: 1777283566450
+entry_point_name: ''
+experiment_id: '984502483504791936'
+lifecycle_stage: active
+run_id: 50aa0ac7f4d247628c724124457f5df0
+run_name: entertaining-colt-16
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777283528194
+status: 3
+tags: []
+user_id: chari

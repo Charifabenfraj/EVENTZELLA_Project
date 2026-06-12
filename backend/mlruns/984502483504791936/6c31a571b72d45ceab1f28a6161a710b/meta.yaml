@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/6c31a571b72d45ceab1f28a6161a710b/artifacts
+end_time: 1777645537592
+entry_point_name: ''
+experiment_id: '984502483504791936'
+lifecycle_stage: active
+run_id: 6c31a571b72d45ceab1f28a6161a710b
+run_name: bittersweet-hawk-230
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777645515543
+status: 3
+tags: []
+user_id: chari

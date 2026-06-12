@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/112980595056751746/855c46c7e16b48e6a47c8e14f3caa331/artifacts
+end_time: 1777670002295
+entry_point_name: ''
+experiment_id: '112980595056751746'
+lifecycle_stage: active
+run_id: 855c46c7e16b48e6a47c8e14f3caa331
+run_name: blushing-foal-857
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777669991454
+status: 3
+tags: []
+user_id: chari

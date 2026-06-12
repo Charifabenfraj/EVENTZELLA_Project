@@ -1,0 +1,16 @@
+creation_timestamp: 1777670426955
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1777670426955
+model_id: m-f7849a3d71fe42c89831aeb21a5ee1ab
+name: KMeans_Event_Clustering
+run_id: 9f145666059e4487baf84725ba63fae1
+run_link: null
+source: models:/m-f7849a3d71fe42c89831aeb21a5ee1ab
+status: READY
+status_message: null
+storage_location: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/306849900542742893/models/m-f7849a3d71fe42c89831aeb21a5ee1ab/artifacts
+user_id: null
+version: 1
+workspace: default

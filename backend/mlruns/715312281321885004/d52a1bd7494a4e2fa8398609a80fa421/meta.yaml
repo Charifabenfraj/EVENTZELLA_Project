@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/715312281321885004/d52a1bd7494a4e2fa8398609a80fa421/artifacts
+end_time: 1777670013527
+entry_point_name: ''
+experiment_id: '715312281321885004'
+lifecycle_stage: active
+run_id: d52a1bd7494a4e2fa8398609a80fa421
+run_name: overjoyed-crow-872
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777670002361
+status: 3
+tags: []
+user_id: chari

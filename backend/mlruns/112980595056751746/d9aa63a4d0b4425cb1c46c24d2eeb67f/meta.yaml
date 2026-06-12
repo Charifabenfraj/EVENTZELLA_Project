@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/112980595056751746/d9aa63a4d0b4425cb1c46c24d2eeb67f/artifacts
+end_time: 1777144255249
+entry_point_name: ''
+experiment_id: '112980595056751746'
+lifecycle_stage: active
+run_id: d9aa63a4d0b4425cb1c46c24d2eeb67f
+run_name: worried-trout-319
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777144255221
+status: 4
+tags: []
+user_id: chari

@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/452334623330671914/7023c10a6be049c69f9a236af997739b/artifacts
+end_time: 1777645575214
+entry_point_name: ''
+experiment_id: '452334623330671914'
+lifecycle_stage: active
+run_id: 7023c10a6be049c69f9a236af997739b
+run_name: rogue-bass-604
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777645564434
+status: 3
+tags: []
+user_id: chari

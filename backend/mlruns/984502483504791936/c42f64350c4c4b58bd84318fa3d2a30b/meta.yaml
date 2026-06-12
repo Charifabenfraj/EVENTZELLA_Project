@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/c42f64350c4c4b58bd84318fa3d2a30b/artifacts
+end_time: 1777168689756
+entry_point_name: ''
+experiment_id: '984502483504791936'
+lifecycle_stage: active
+run_id: c42f64350c4c4b58bd84318fa3d2a30b
+run_name: persistent-fish-648
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777168685932
+status: 3
+tags: []
+user_id: chari

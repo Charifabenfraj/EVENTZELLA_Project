@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/64b5f6aa318345e48d2f3f7f02ca1b7e/artifacts
+end_time: 1777171937373
+entry_point_name: ''
+experiment_id: '984502483504791936'
+lifecycle_stage: active
+run_id: 64b5f6aa318345e48d2f3f7f02ca1b7e
+run_name: delightful-gull-630
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777171933316
+status: 3
+tags: []
+user_id: chari

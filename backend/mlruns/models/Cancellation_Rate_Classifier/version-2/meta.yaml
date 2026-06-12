@@ -1,0 +1,16 @@
+creation_timestamp: 1777165127151
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1777165127151
+model_id: m-6b979d17338f418892c44f6aa606180e
+name: Cancellation_Rate_Classifier
+run_id: cdd80fc995dd4528a4d101f099771996
+run_link: null
+source: models:/m-6b979d17338f418892c44f6aa606180e
+status: READY
+status_message: null
+storage_location: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/models/m-6b979d17338f418892c44f6aa606180e/artifacts
+user_id: null
+version: 2
+workspace: default

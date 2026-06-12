@@ -1,0 +1,8 @@
+artifact_location: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/939652358634878084
+creation_time: 1777670346842
+experiment_id: '939652358634878084'
+last_update_time: 1777670346842
+lifecycle_stage: active
+name: Event_Date_Recommender
+trace_location: null
+workspace: default

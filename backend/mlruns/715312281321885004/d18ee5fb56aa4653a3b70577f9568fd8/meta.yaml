@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/715312281321885004/d18ee5fb56aa4653a3b70577f9568fd8/artifacts
+end_time: 1777169112578
+entry_point_name: ''
+experiment_id: '715312281321885004'
+lifecycle_stage: active
+run_id: d18ee5fb56aa4653a3b70577f9568fd8
+run_name: incongruous-sow-567
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777169112537
+status: 3
+tags: []
+user_id: chari

@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/845e03d8ddfd472997c87087e5553e71/artifacts
+end_time: 1777165108843
+entry_point_name: ''
+experiment_id: '984502483504791936'
+lifecycle_stage: active
+run_id: 845e03d8ddfd472997c87087e5553e71
+run_name: rogue-owl-885
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777165102497
+status: 3
+tags: []
+user_id: chari

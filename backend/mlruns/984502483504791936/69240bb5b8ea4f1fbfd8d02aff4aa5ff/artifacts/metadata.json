@@ -1,0 +1,13 @@
+{
+  "training_date": "2026-05-01T15:31:23.511876",
+  "model_name": "cancellation_rate",
+  "model_type": "classification",
+  "training_samples": 323,
+  "test_samples": 81,
+  "features": [
+    "event_type",
+    "budget",
+    "final_price"
+  ],
+  "run_id": "69240bb5b8ea4f1fbfd8d02aff4aa5ff"
+}

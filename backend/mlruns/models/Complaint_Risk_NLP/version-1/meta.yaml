@@ -1,0 +1,16 @@
+creation_timestamp: 1777645575148
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1777645575148
+model_id: m-608f2067f363465a86ae0b170b171cfb
+name: Complaint_Risk_NLP
+run_id: 7023c10a6be049c69f9a236af997739b
+run_link: null
+source: models:/m-608f2067f363465a86ae0b170b171cfb
+status: READY
+status_message: null
+storage_location: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/452334623330671914/models/m-608f2067f363465a86ae0b170b171cfb/artifacts
+user_id: null
+version: 1
+workspace: default

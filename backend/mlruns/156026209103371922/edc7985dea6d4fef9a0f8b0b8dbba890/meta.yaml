@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/156026209103371922/edc7985dea6d4fef9a0f8b0b8dbba890/artifacts
+end_time: 1777670285406
+entry_point_name: ''
+experiment_id: '156026209103371922'
+lifecycle_stage: active
+run_id: edc7985dea6d4fef9a0f8b0b8dbba890
+run_name: delicate-seal-989
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777670277316
+status: 4
+tags: []
+user_id: chari

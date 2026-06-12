@@ -1,0 +1,15 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/112980595056751746/cd125ebb6346401bba83da7a24846383/artifacts
+deleted_time: 1777166452735
+end_time: 1777143772108
+entry_point_name: ''
+experiment_id: '112980595056751746'
+lifecycle_stage: deleted
+run_id: cd125ebb6346401bba83da7a24846383
+run_name: dashing-dove-9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777143772083
+status: 4
+tags: []
+user_id: chari

@@ -1,0 +1,15 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/00c2033cb5834e1ea592b57e02733c61/artifacts
+deleted_time: 1777166418239
+end_time: 1777143826527
+entry_point_name: ''
+experiment_id: '984502483504791936'
+lifecycle_stage: deleted
+run_id: 00c2033cb5834e1ea592b57e02733c61
+run_name: bouncy-gnat-961
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777143825937
+status: 4
+tags: []
+user_id: chari

@@ -1,0 +1,16 @@
+creation_timestamp: 1777645557092
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1777645557092
+model_id: m-d2cc2b4c0fc045ff8f843eb3a5f26dab
+name: Provider_Budget_Lookup
+run_id: 88f2a5fea4c04b6db11a2be4bea35233
+run_link: null
+source: models:/m-d2cc2b4c0fc045ff8f843eb3a5f26dab
+status: READY
+status_message: null
+storage_location: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/715312281321885004/models/m-d2cc2b4c0fc045ff8f843eb3a5f26dab/artifacts
+user_id: null
+version: 3
+workspace: default

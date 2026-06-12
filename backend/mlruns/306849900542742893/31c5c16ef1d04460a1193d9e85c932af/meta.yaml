@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/306849900542742893/31c5c16ef1d04460a1193d9e85c932af/artifacts
+end_time: 1777677664276
+entry_point_name: ''
+experiment_id: '306849900542742893'
+lifecycle_stage: active
+run_id: 31c5c16ef1d04460a1193d9e85c932af
+run_name: dapper-sloth-415
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777677660642
+status: 3
+tags: []
+user_id: chari

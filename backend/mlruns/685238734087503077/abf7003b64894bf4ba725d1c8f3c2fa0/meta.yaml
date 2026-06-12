@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/685238734087503077/abf7003b64894bf4ba725d1c8f3c2fa0/artifacts
+end_time: 1777670020247
+entry_point_name: ''
+experiment_id: '685238734087503077'
+lifecycle_stage: active
+run_id: abf7003b64894bf4ba725d1c8f3c2fa0
+run_name: efficient-bird-357
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777670013560
+status: 3
+tags: []
+user_id: chari

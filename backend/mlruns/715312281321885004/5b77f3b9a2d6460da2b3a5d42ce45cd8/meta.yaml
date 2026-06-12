@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/715312281321885004/5b77f3b9a2d6460da2b3a5d42ce45cd8/artifacts
+end_time: 1777251336755
+entry_point_name: ''
+experiment_id: '715312281321885004'
+lifecycle_stage: active
+run_id: 5b77f3b9a2d6460da2b3a5d42ce45cd8
+run_name: caring-snake-991
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777251322333
+status: 3
+tags: []
+user_id: chari

@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/112980595056751746/2badce0e4be24ac480a290458e4d631e/artifacts
+end_time: 1777165521627
+entry_point_name: ''
+experiment_id: '112980595056751746'
+lifecycle_stage: active
+run_id: 2badce0e4be24ac480a290458e4d631e
+run_name: chill-grub-678
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777165517965
+status: 3
+tags: []
+user_id: chari

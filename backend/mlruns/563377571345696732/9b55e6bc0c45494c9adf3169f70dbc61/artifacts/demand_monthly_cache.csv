@@ -1,0 +1,985 @@
+event_month,event_type,city,demand_count
+2022-01-01,Corporate Event,Ariana,6
+2022-01-01,Corporate Event,Ben Arous,6
+2022-01-01,Corporate Event,Bizerte,10
+2022-01-01,Corporate Event,Béja,7
+2022-01-01,Corporate Event,Gabès,8
+2022-01-01,Corporate Event,Gafsa,15
+2022-01-01,Corporate Event,Jendouba,17
+2022-01-01,Corporate Event,Kairouan,12
+2022-01-01,Corporate Event,Kasserine,10
+2022-01-01,Corporate Event,Kef,5
+2022-01-01,Corporate Event,Kébili,8
+2022-01-01,Corporate Event,Mahdia,8
+2022-01-01,Corporate Event,Manouba,10
+2022-01-01,Corporate Event,Monastir,12
+2022-01-01,Corporate Event,Médenine,10
+2022-01-01,Corporate Event,Nabeul,10
+2022-01-01,Corporate Event,Sfax,7
+2022-01-01,Corporate Event,Sidi Bouzid,6
+2022-01-01,Corporate Event,Siliana,9
+2022-01-01,Corporate Event,Sousse,4
+2022-01-01,Corporate Event,Tataouine,10
+2022-01-01,Corporate Event,Tozeur,8
+2022-01-01,Corporate Event,Tunis,6
+2022-01-01,Corporate Event,Zaghouan,8
+2022-01-01,Private Party,Ariana,13
+2022-01-01,Private Party,Ben Arous,8
+2022-01-01,Private Party,Bizerte,14
+2022-01-01,Private Party,Béja,13
+2022-01-01,Private Party,Gabès,8
+2022-01-01,Private Party,Gafsa,9
+2022-01-01,Private Party,Jendouba,16
+2022-01-01,Private Party,Kairouan,17
+2022-01-01,Private Party,Kasserine,15
+2022-01-01,Private Party,Kef,6
+2022-01-01,Private Party,Kébili,10
+2022-01-01,Private Party,Mahdia,9
+2022-01-01,Private Party,Manouba,9
+2022-01-01,Private Party,Monastir,5
+2022-01-01,Private Party,Médenine,16
+2022-01-01,Private Party,Nabeul,22
+2022-01-01,Private Party,Sfax,14
+2022-01-01,Private Party,Sidi Bouzid,3
+2022-01-01,Private Party,Siliana,13
+2022-01-01,Private Party,Sousse,6
+2022-01-01,Private Party,Tataouine,5
+2022-01-01,Private Party,Tozeur,10
+2022-01-01,Private Party,Tunis,16
+2022-01-01,Private Party,Zaghouan,14
+2022-02-01,Private Party,Ariana,12
+2022-02-01,Private Party,Ben Arous,9
+2022-02-01,Private Party,Bizerte,13
+2022-02-01,Private Party,Béja,12
+2022-02-01,Private Party,Gabès,12
+2022-02-01,Private Party,Gafsa,13
+2022-02-01,Private Party,Jendouba,14
+2022-02-01,Private Party,Kairouan,15
+2022-02-01,Private Party,Kasserine,15
+2022-02-01,Private Party,Kef,12
+2022-02-01,Private Party,Kébili,8
+2022-02-01,Private Party,Mahdia,8
+2022-02-01,Private Party,Manouba,22
+2022-02-01,Private Party,Monastir,9
+2022-02-01,Private Party,Médenine,16
+2022-02-01,Private Party,Nabeul,16
+2022-02-01,Private Party,Sfax,11
+2022-02-01,Private Party,Sidi Bouzid,8
+2022-02-01,Private Party,Siliana,11
+2022-02-01,Private Party,Sousse,16
+2022-02-01,Private Party,Tataouine,15
+2022-02-01,Private Party,Tozeur,11
+2022-02-01,Private Party,Tunis,10
+2022-02-01,Private Party,Zaghouan,14
+2022-03-01,Birthday,Ariana,37
+2022-03-01,Birthday,Ben Arous,17
+2022-03-01,Birthday,Bizerte,42
+2022-03-01,Birthday,Béja,26
+2022-03-01,Birthday,Gabès,19
+2022-03-01,Birthday,Gafsa,39
+2022-03-01,Birthday,Jendouba,38
+2022-03-01,Birthday,Kairouan,34
+2022-03-01,Birthday,Kasserine,27
+2022-03-01,Birthday,Kef,23
+2022-03-01,Birthday,Kébili,20
+2022-03-01,Birthday,Mahdia,20
+2022-03-01,Birthday,Manouba,52
+2022-03-01,Birthday,Monastir,22
+2022-03-01,Birthday,Médenine,36
+2022-03-01,Birthday,Nabeul,60
+2022-03-01,Birthday,Sfax,30
+2022-03-01,Birthday,Sidi Bouzid,18
+2022-03-01,Birthday,Siliana,37
+2022-03-01,Birthday,Sousse,15
+2022-03-01,Birthday,Tataouine,26
+2022-03-01,Birthday,Tozeur,32
+2022-03-01,Birthday,Tunis,54
+2022-03-01,Birthday,Zaghouan,31
+2022-03-01,Private Party,Ariana,8
+2022-03-01,Private Party,Ben Arous,6
+2022-03-01,Private Party,Bizerte,11
+2022-03-01,Private Party,Béja,11
+2022-03-01,Private Party,Gabès,9
+2022-03-01,Private Party,Gafsa,12
+2022-03-01,Private Party,Jendouba,23
+2022-03-01,Private Party,Kairouan,14
+2022-03-01,Private Party,Kasserine,16
+2022-03-01,Private Party,Kef,9
+2022-03-01,Private Party,Kébili,9
+2022-03-01,Private Party,Mahdia,6
+2022-03-01,Private Party,Manouba,16
+2022-03-01,Private Party,Monastir,7
+2022-03-01,Private Party,Médenine,16
+2022-03-01,Private Party,Nabeul,21
+2022-03-01,Private Party,Sfax,10
+2022-03-01,Private Party,Sidi Bouzid,10
+2022-03-01,Private Party,Siliana,20
+2022-03-01,Private Party,Sousse,3
+2022-03-01,Private Party,Tataouine,8
+2022-03-01,Private Party,Tozeur,16
+2022-03-01,Private Party,Tunis,23
+2022-03-01,Private Party,Zaghouan,14
+2022-04-01,Corporate Event,Ariana,15
+2022-04-01,Corporate Event,Ben Arous,4
+2022-04-01,Corporate Event,Bizerte,17
+2022-04-01,Corporate Event,Béja,13
+2022-04-01,Corporate Event,Gabès,13
+2022-04-01,Corporate Event,Gafsa,14
+2022-04-01,Corporate Event,Jendouba,20
+2022-04-01,Corporate Event,Kairouan,14
+2022-04-01,Corporate Event,Kasserine,8
+2022-04-01,Corporate Event,Kef,10
+2022-04-01,Corporate Event,Kébili,12
+2022-04-01,Corporate Event,Mahdia,13
+2022-04-01,Corporate Event,Manouba,19
+2022-04-01,Corporate Event,Monastir,8
+2022-04-01,Corporate Event,Médenine,20
+2022-04-01,Corporate Event,Nabeul,20
+2022-04-01,Corporate Event,Sfax,10
+2022-04-01,Corporate Event,Sidi Bouzid,4
+2022-04-01,Corporate Event,Siliana,14
+2022-04-01,Corporate Event,Sousse,10
+2022-04-01,Corporate Event,Tataouine,11
+2022-04-01,Corporate Event,Tozeur,15
+2022-04-01,Corporate Event,Tunis,14
+2022-04-01,Corporate Event,Zaghouan,12
+2022-05-01,Private Party,Ariana,16
+2022-05-01,Private Party,Ben Arous,7
+2022-05-01,Private Party,Bizerte,7
+2022-05-01,Private Party,Béja,14
+2022-05-01,Private Party,Gabès,9
+2022-05-01,Private Party,Gafsa,13
+2022-05-01,Private Party,Jendouba,10
+2022-05-01,Private Party,Kairouan,11
+2022-05-01,Private Party,Kasserine,8
+2022-05-01,Private Party,Kef,9
+2022-05-01,Private Party,Kébili,11
+2022-05-01,Private Party,Mahdia,7
+2022-05-01,Private Party,Manouba,17
+2022-05-01,Private Party,Monastir,11
+2022-05-01,Private Party,Médenine,11
+2022-05-01,Private Party,Nabeul,17
+2022-05-01,Private Party,Sfax,11
+2022-05-01,Private Party,Sidi Bouzid,11
+2022-05-01,Private Party,Siliana,14
+2022-05-01,Private Party,Sousse,6
+2022-05-01,Private Party,Tataouine,15
+2022-05-01,Private Party,Tozeur,10
+2022-05-01,Private Party,Tunis,11
+2022-05-01,Private Party,Zaghouan,15
+2022-06-01,Birthday,Ariana,31
+2022-06-01,Birthday,Ben Arous,23
+2022-06-01,Birthday,Bizerte,36
+2022-06-01,Birthday,Béja,37
+2022-06-01,Birthday,Gabès,29
+2022-06-01,Birthday,Gafsa,34
+2022-06-01,Birthday,Jendouba,40
+2022-06-01,Birthday,Kairouan,33
+2022-06-01,Birthday,Kasserine,24
+2022-06-01,Birthday,Kef,25
+2022-06-01,Birthday,Kébili,18
+2022-06-01,Birthday,Mahdia,20
+2022-06-01,Birthday,Manouba,39
+2022-06-01,Birthday,Monastir,24
+2022-06-01,Birthday,Médenine,45
+2022-06-01,Birthday,Nabeul,66
+2022-06-01,Birthday,Sfax,34
+2022-06-01,Birthday,Sidi Bouzid,29
+2022-06-01,Birthday,Siliana,25
+2022-06-01,Birthday,Sousse,23
+2022-06-01,Birthday,Tataouine,30
+2022-06-01,Birthday,Tozeur,31
+2022-06-01,Birthday,Tunis,35
+2022-06-01,Birthday,Zaghouan,36
+2022-06-01,Corporate Event,Ariana,13
+2022-06-01,Corporate Event,Ben Arous,8
+2022-06-01,Corporate Event,Bizerte,14
+2022-06-01,Corporate Event,Béja,14
+2022-06-01,Corporate Event,Gabès,9
+2022-06-01,Corporate Event,Gafsa,18
+2022-06-01,Corporate Event,Jendouba,11
+2022-06-01,Corporate Event,Kairouan,15
+2022-06-01,Corporate Event,Kasserine,15
+2022-06-01,Corporate Event,Kef,10
+2022-06-01,Corporate Event,Kébili,6
+2022-06-01,Corporate Event,Mahdia,12
+2022-06-01,Corporate Event,Manouba,14
+2022-06-01,Corporate Event,Monastir,10
+2022-06-01,Corporate Event,Médenine,16
+2022-06-01,Corporate Event,Nabeul,19
+2022-06-01,Corporate Event,Sfax,11
+2022-06-01,Corporate Event,Sidi Bouzid,8
+2022-06-01,Corporate Event,Siliana,12
+2022-06-01,Corporate Event,Sousse,6
+2022-06-01,Corporate Event,Tataouine,10
+2022-06-01,Corporate Event,Tozeur,4
+2022-06-01,Corporate Event,Tunis,15
+2022-06-01,Corporate Event,Zaghouan,13
+2022-07-01,Private Party,Ariana,31
+2022-07-01,Private Party,Ben Arous,13
+2022-07-01,Private Party,Bizerte,20
+2022-07-01,Private Party,Béja,23
+2022-07-01,Private Party,Gabès,12
+2022-07-01,Private Party,Gafsa,15
+2022-07-01,Private Party,Jendouba,23
+2022-07-01,Private Party,Kairouan,21
+2022-07-01,Private Party,Kasserine,22
+2022-07-01,Private Party,Kef,14
+2022-07-01,Private Party,Kébili,18
+2022-07-01,Private Party,Mahdia,17
+2022-07-01,Private Party,Manouba,15
+2022-07-01,Private Party,Monastir,19
+2022-07-01,Private Party,Médenine,27
+2022-07-01,Private Party,Nabeul,32
+2022-07-01,Private Party,Sfax,21
+2022-07-01,Private Party,Sidi Bouzid,15
+2022-07-01,Private Party,Siliana,18
+2022-07-01,Private Party,Sousse,10
+2022-07-01,Private Party,Tataouine,13
+2022-07-01,Private Party,Tozeur,17
+2022-07-01,Private Party,Tunis,19
+2022-07-01,Private Party,Zaghouan,18
+2022-08-01,Birthday,Ariana,36
+2022-08-01,Birthday,Ben Arous,20
+2022-08-01,Birthday,Bizerte,45
+2022-08-01,Birthday,Béja,30
+2022-08-01,Birthday,Gabès,39
+2022-08-01,Birthday,Gafsa,29
+2022-08-01,Birthday,Jendouba,32
+2022-08-01,Birthday,Kairouan,47
+2022-08-01,Birthday,Kasserine,35
+2022-08-01,Birthday,Kef,27
+2022-08-01,Birthday,Kébili,20
+2022-08-01,Birthday,Mahdia,28
+2022-08-01,Birthday,Manouba,43
+2022-08-01,Birthday,Monastir,22
+2022-08-01,Birthday,Médenine,52
+2022-08-01,Birthday,Nabeul,40
+2022-08-01,Birthday,Sfax,22
+2022-08-01,Birthday,Sidi Bouzid,19
+2022-08-01,Birthday,Siliana,28
+2022-08-01,Birthday,Sousse,17
+2022-08-01,Birthday,Tataouine,21
+2022-08-01,Birthday,Tozeur,23
+2022-08-01,Birthday,Tunis,39
+2022-08-01,Birthday,Zaghouan,25
+2022-09-01,Private Party,Ariana,18
+2022-09-01,Private Party,Ben Arous,7
+2022-09-01,Private Party,Bizerte,6
+2022-09-01,Private Party,Béja,7
+2022-09-01,Private Party,Gabès,10
+2022-09-01,Private Party,Gafsa,13
+2022-09-01,Private Party,Jendouba,10
+2022-09-01,Private Party,Kairouan,15
+2022-09-01,Private Party,Kasserine,11
+2022-09-01,Private Party,Kef,11
+2022-09-01,Private Party,Kébili,13
+2022-09-01,Private Party,Mahdia,13
+2022-09-01,Private Party,Manouba,26
+2022-09-01,Private Party,Monastir,6
+2022-09-01,Private Party,Médenine,16
+2022-09-01,Private Party,Nabeul,24
+2022-09-01,Private Party,Sfax,9
+2022-09-01,Private Party,Sidi Bouzid,11
+2022-09-01,Private Party,Siliana,9
+2022-09-01,Private Party,Sousse,9
+2022-09-01,Private Party,Tataouine,7
+2022-09-01,Private Party,Tozeur,9
+2022-09-01,Private Party,Tunis,14
+2022-09-01,Private Party,Zaghouan,11
+2022-10-01,Corporate Event,Ariana,14
+2022-10-01,Corporate Event,Ben Arous,9
+2022-10-01,Corporate Event,Bizerte,11
+2022-10-01,Corporate Event,Béja,9
+2022-10-01,Corporate Event,Gabès,6
+2022-10-01,Corporate Event,Gafsa,7
+2022-10-01,Corporate Event,Jendouba,11
+2022-10-01,Corporate Event,Kairouan,8
+2022-10-01,Corporate Event,Kasserine,10
+2022-10-01,Corporate Event,Kef,8
+2022-10-01,Corporate Event,Kébili,10
+2022-10-01,Corporate Event,Mahdia,8
+2022-10-01,Corporate Event,Manouba,10
+2022-10-01,Corporate Event,Monastir,8
+2022-10-01,Corporate Event,Médenine,13
+2022-10-01,Corporate Event,Nabeul,20
+2022-10-01,Corporate Event,Sfax,9
+2022-10-01,Corporate Event,Sidi Bouzid,9
+2022-10-01,Corporate Event,Siliana,15
+2022-10-01,Corporate Event,Sousse,13
+2022-10-01,Corporate Event,Tataouine,11
+2022-10-01,Corporate Event,Tozeur,8
+2022-10-01,Corporate Event,Tunis,14
+2022-10-01,Corporate Event,Zaghouan,14
+2022-10-01,Private Party,Ariana,11
+2022-10-01,Private Party,Ben Arous,10
+2022-10-01,Private Party,Bizerte,13
+2022-10-01,Private Party,Béja,10
+2022-10-01,Private Party,Gabès,9
+2022-10-01,Private Party,Gafsa,7
+2022-10-01,Private Party,Jendouba,13
+2022-10-01,Private Party,Kairouan,15
+2022-10-01,Private Party,Kasserine,8
+2022-10-01,Private Party,Kef,10
+2022-10-01,Private Party,Kébili,8
+2022-10-01,Private Party,Mahdia,11
+2022-10-01,Private Party,Manouba,11
+2022-10-01,Private Party,Monastir,6
+2022-10-01,Private Party,Médenine,7
+2022-10-01,Private Party,Nabeul,8
+2022-10-01,Private Party,Sfax,4
+2022-10-01,Private Party,Sidi Bouzid,6
+2022-10-01,Private Party,Siliana,7
+2022-10-01,Private Party,Sousse,5
+2022-10-01,Private Party,Tataouine,10
+2022-10-01,Private Party,Tozeur,9
+2022-10-01,Private Party,Tunis,5
+2022-10-01,Private Party,Zaghouan,14
+2022-11-01,Corporate Event,Ariana,15
+2022-11-01,Corporate Event,Ben Arous,9
+2022-11-01,Corporate Event,Bizerte,11
+2022-11-01,Corporate Event,Béja,5
+2022-11-01,Corporate Event,Gabès,7
+2022-11-01,Corporate Event,Gafsa,11
+2022-11-01,Corporate Event,Jendouba,13
+2022-11-01,Corporate Event,Kairouan,7
+2022-11-01,Corporate Event,Kasserine,9
+2022-11-01,Corporate Event,Kef,12
+2022-11-01,Corporate Event,Kébili,12
+2022-11-01,Corporate Event,Mahdia,13
+2022-11-01,Corporate Event,Manouba,14
+2022-11-01,Corporate Event,Monastir,12
+2022-11-01,Corporate Event,Médenine,17
+2022-11-01,Corporate Event,Nabeul,14
+2022-11-01,Corporate Event,Sfax,7
+2022-11-01,Corporate Event,Sidi Bouzid,11
+2022-11-01,Corporate Event,Siliana,8
+2022-11-01,Corporate Event,Sousse,5
+2022-11-01,Corporate Event,Tataouine,10
+2022-11-01,Corporate Event,Tozeur,5
+2022-11-01,Corporate Event,Tunis,13
+2022-11-01,Corporate Event,Zaghouan,10
+2022-12-01,Corporate Event,Ariana,12
+2022-12-01,Corporate Event,Ben Arous,7
+2022-12-01,Corporate Event,Bizerte,11
+2022-12-01,Corporate Event,Béja,21
+2022-12-01,Corporate Event,Gabès,12
+2022-12-01,Corporate Event,Gafsa,10
+2022-12-01,Corporate Event,Jendouba,14
+2022-12-01,Corporate Event,Kairouan,10
+2022-12-01,Corporate Event,Kasserine,8
+2022-12-01,Corporate Event,Kef,6
+2022-12-01,Corporate Event,Kébili,12
+2022-12-01,Corporate Event,Mahdia,4
+2022-12-01,Corporate Event,Manouba,12
+2022-12-01,Corporate Event,Monastir,12
+2022-12-01,Corporate Event,Médenine,13
+2022-12-01,Corporate Event,Nabeul,15
+2022-12-01,Corporate Event,Sfax,9
+2022-12-01,Corporate Event,Sidi Bouzid,4
+2022-12-01,Corporate Event,Siliana,8
+2022-12-01,Corporate Event,Sousse,7
+2022-12-01,Corporate Event,Tataouine,8
+2022-12-01,Corporate Event,Tozeur,4
+2022-12-01,Corporate Event,Tunis,7
+2022-12-01,Corporate Event,Zaghouan,12
+2023-02-01,Wedding,Ariana,27
+2023-02-01,Wedding,Ben Arous,23
+2023-02-01,Wedding,Bizerte,39
+2023-02-01,Wedding,Béja,28
+2023-02-01,Wedding,Gabès,23
+2023-02-01,Wedding,Gafsa,36
+2023-02-01,Wedding,Jendouba,37
+2023-02-01,Wedding,Kairouan,46
+2023-02-01,Wedding,Kasserine,42
+2023-02-01,Wedding,Kef,33
+2023-02-01,Wedding,Kébili,12
+2023-02-01,Wedding,Mahdia,21
+2023-02-01,Wedding,Manouba,37
+2023-02-01,Wedding,Monastir,29
+2023-02-01,Wedding,Médenine,54
+2023-02-01,Wedding,Nabeul,41
+2023-02-01,Wedding,Sfax,30
+2023-02-01,Wedding,Sidi Bouzid,24
+2023-02-01,Wedding,Siliana,40
+2023-02-01,Wedding,Sousse,22
+2023-02-01,Wedding,Tataouine,29
+2023-02-01,Wedding,Tozeur,35
+2023-02-01,Wedding,Tunis,41
+2023-02-01,Wedding,Zaghouan,46
+2023-05-01,Corporate Event,Ariana,10
+2023-05-01,Corporate Event,Ben Arous,10
+2023-05-01,Corporate Event,Bizerte,17
+2023-05-01,Corporate Event,Béja,14
+2023-05-01,Corporate Event,Gabès,12
+2023-05-01,Corporate Event,Gafsa,12
+2023-05-01,Corporate Event,Jendouba,15
+2023-05-01,Corporate Event,Kairouan,17
+2023-05-01,Corporate Event,Kasserine,15
+2023-05-01,Corporate Event,Kef,11
+2023-05-01,Corporate Event,Kébili,12
+2023-05-01,Corporate Event,Mahdia,7
+2023-05-01,Corporate Event,Manouba,16
+2023-05-01,Corporate Event,Monastir,13
+2023-05-01,Corporate Event,Médenine,15
+2023-05-01,Corporate Event,Nabeul,19
+2023-05-01,Corporate Event,Sfax,8
+2023-05-01,Corporate Event,Sidi Bouzid,5
+2023-05-01,Corporate Event,Siliana,10
+2023-05-01,Corporate Event,Sousse,10
+2023-05-01,Corporate Event,Tataouine,10
+2023-05-01,Corporate Event,Tozeur,12
+2023-05-01,Corporate Event,Tunis,15
+2023-05-01,Corporate Event,Zaghouan,15
+2023-06-01,Birthday,Ariana,23
+2023-06-01,Birthday,Ben Arous,17
+2023-06-01,Birthday,Bizerte,30
+2023-06-01,Birthday,Béja,29
+2023-06-01,Birthday,Gabès,33
+2023-06-01,Birthday,Gafsa,17
+2023-06-01,Birthday,Jendouba,46
+2023-06-01,Birthday,Kairouan,34
+2023-06-01,Birthday,Kasserine,39
+2023-06-01,Birthday,Kef,25
+2023-06-01,Birthday,Kébili,23
+2023-06-01,Birthday,Mahdia,27
+2023-06-01,Birthday,Manouba,42
+2023-06-01,Birthday,Monastir,18
+2023-06-01,Birthday,Médenine,42
+2023-06-01,Birthday,Nabeul,42
+2023-06-01,Birthday,Sfax,15
+2023-06-01,Birthday,Sidi Bouzid,23
+2023-06-01,Birthday,Siliana,33
+2023-06-01,Birthday,Sousse,13
+2023-06-01,Birthday,Tataouine,25
+2023-06-01,Birthday,Tozeur,22
+2023-06-01,Birthday,Tunis,27
+2023-06-01,Birthday,Zaghouan,36
+2023-06-01,Private Party,Ariana,16
+2023-06-01,Private Party,Ben Arous,8
+2023-06-01,Private Party,Bizerte,13
+2023-06-01,Private Party,Béja,11
+2023-06-01,Private Party,Gabès,11
+2023-06-01,Private Party,Gafsa,10
+2023-06-01,Private Party,Jendouba,17
+2023-06-01,Private Party,Kairouan,19
+2023-06-01,Private Party,Kasserine,21
+2023-06-01,Private Party,Kef,10
+2023-06-01,Private Party,Kébili,14
+2023-06-01,Private Party,Mahdia,12
+2023-06-01,Private Party,Manouba,16
+2023-06-01,Private Party,Monastir,8
+2023-06-01,Private Party,Médenine,16
+2023-06-01,Private Party,Nabeul,22
+2023-06-01,Private Party,Sfax,12
+2023-06-01,Private Party,Sidi Bouzid,7
+2023-06-01,Private Party,Siliana,21
+2023-06-01,Private Party,Sousse,5
+2023-06-01,Private Party,Tataouine,10
+2023-06-01,Private Party,Tozeur,4
+2023-06-01,Private Party,Tunis,9
+2023-06-01,Private Party,Zaghouan,16
+2023-07-01,Birthday,Ariana,38
+2023-07-01,Birthday,Ben Arous,22
+2023-07-01,Birthday,Bizerte,33
+2023-07-01,Birthday,Béja,44
+2023-07-01,Birthday,Gabès,29
+2023-07-01,Birthday,Gafsa,34
+2023-07-01,Birthday,Jendouba,37
+2023-07-01,Birthday,Kairouan,35
+2023-07-01,Birthday,Kasserine,35
+2023-07-01,Birthday,Kef,22
+2023-07-01,Birthday,Kébili,27
+2023-07-01,Birthday,Mahdia,28
+2023-07-01,Birthday,Manouba,33
+2023-07-01,Birthday,Monastir,31
+2023-07-01,Birthday,Médenine,39
+2023-07-01,Birthday,Nabeul,47
+2023-07-01,Birthday,Sfax,32
+2023-07-01,Birthday,Sidi Bouzid,26
+2023-07-01,Birthday,Siliana,29
+2023-07-01,Birthday,Sousse,15
+2023-07-01,Birthday,Tataouine,25
+2023-07-01,Birthday,Tozeur,23
+2023-07-01,Birthday,Tunis,26
+2023-07-01,Birthday,Zaghouan,25
+2023-08-01,Private Party,Ariana,11
+2023-08-01,Private Party,Ben Arous,11
+2023-08-01,Private Party,Bizerte,11
+2023-08-01,Private Party,Béja,9
+2023-08-01,Private Party,Gabès,15
+2023-08-01,Private Party,Gafsa,5
+2023-08-01,Private Party,Jendouba,13
+2023-08-01,Private Party,Kairouan,15
+2023-08-01,Private Party,Kasserine,15
+2023-08-01,Private Party,Kef,12
+2023-08-01,Private Party,Kébili,7
+2023-08-01,Private Party,Mahdia,11
+2023-08-01,Private Party,Manouba,21
+2023-08-01,Private Party,Monastir,8
+2023-08-01,Private Party,Médenine,12
+2023-08-01,Private Party,Nabeul,15
+2023-08-01,Private Party,Sfax,10
+2023-08-01,Private Party,Sidi Bouzid,12
+2023-08-01,Private Party,Siliana,10
+2023-08-01,Private Party,Sousse,4
+2023-08-01,Private Party,Tataouine,11
+2023-08-01,Private Party,Tozeur,10
+2023-08-01,Private Party,Tunis,17
+2023-08-01,Private Party,Zaghouan,14
+2023-09-01,Wedding,Ariana,31
+2023-09-01,Wedding,Ben Arous,19
+2023-09-01,Wedding,Bizerte,32
+2023-09-01,Wedding,Béja,27
+2023-09-01,Wedding,Gabès,35
+2023-09-01,Wedding,Gafsa,28
+2023-09-01,Wedding,Jendouba,39
+2023-09-01,Wedding,Kairouan,35
+2023-09-01,Wedding,Kasserine,37
+2023-09-01,Wedding,Kef,39
+2023-09-01,Wedding,Kébili,28
+2023-09-01,Wedding,Mahdia,28
+2023-09-01,Wedding,Manouba,39
+2023-09-01,Wedding,Monastir,27
+2023-09-01,Wedding,Médenine,36
+2023-09-01,Wedding,Nabeul,47
+2023-09-01,Wedding,Sfax,31
+2023-09-01,Wedding,Sidi Bouzid,23
+2023-09-01,Wedding,Siliana,29
+2023-09-01,Wedding,Sousse,17
+2023-09-01,Wedding,Tataouine,35
+2023-09-01,Wedding,Tozeur,22
+2023-09-01,Wedding,Tunis,35
+2023-09-01,Wedding,Zaghouan,30
+2023-10-01,Private Party,Ariana,8
+2023-10-01,Private Party,Ben Arous,10
+2023-10-01,Private Party,Bizerte,8
+2023-10-01,Private Party,Béja,10
+2023-10-01,Private Party,Gabès,9
+2023-10-01,Private Party,Gafsa,12
+2023-10-01,Private Party,Jendouba,12
+2023-10-01,Private Party,Kairouan,9
+2023-10-01,Private Party,Kasserine,10
+2023-10-01,Private Party,Kef,15
+2023-10-01,Private Party,Kébili,5
+2023-10-01,Private Party,Mahdia,5
+2023-10-01,Private Party,Manouba,10
+2023-10-01,Private Party,Monastir,10
+2023-10-01,Private Party,Médenine,8
+2023-10-01,Private Party,Nabeul,14
+2023-10-01,Private Party,Sfax,12
+2023-10-01,Private Party,Sidi Bouzid,6
+2023-10-01,Private Party,Siliana,8
+2023-10-01,Private Party,Sousse,4
+2023-10-01,Private Party,Tataouine,13
+2023-10-01,Private Party,Tozeur,9
+2023-10-01,Private Party,Tunis,16
+2023-10-01,Private Party,Zaghouan,9
+2023-11-01,Corporate Event,Ariana,48
+2023-11-01,Corporate Event,Ben Arous,37
+2023-11-01,Corporate Event,Bizerte,58
+2023-11-01,Corporate Event,Béja,40
+2023-11-01,Corporate Event,Gabès,53
+2023-11-01,Corporate Event,Gafsa,45
+2023-11-01,Corporate Event,Jendouba,59
+2023-11-01,Corporate Event,Kairouan,62
+2023-11-01,Corporate Event,Kasserine,48
+2023-11-01,Corporate Event,Kef,37
+2023-11-01,Corporate Event,Kébili,25
+2023-11-01,Corporate Event,Mahdia,36
+2023-11-01,Corporate Event,Manouba,65
+2023-11-01,Corporate Event,Monastir,38
+2023-11-01,Corporate Event,Médenine,52
+2023-11-01,Corporate Event,Nabeul,68
+2023-11-01,Corporate Event,Sfax,51
+2023-11-01,Corporate Event,Sidi Bouzid,37
+2023-11-01,Corporate Event,Siliana,46
+2023-11-01,Corporate Event,Sousse,24
+2023-11-01,Corporate Event,Tataouine,40
+2023-11-01,Corporate Event,Tozeur,40
+2023-11-01,Corporate Event,Tunis,56
+2023-11-01,Corporate Event,Zaghouan,51
+2023-12-01,Wedding,Ariana,43
+2023-12-01,Wedding,Ben Arous,17
+2023-12-01,Wedding,Bizerte,37
+2023-12-01,Wedding,Béja,29
+2023-12-01,Wedding,Gabès,25
+2023-12-01,Wedding,Gafsa,29
+2023-12-01,Wedding,Jendouba,27
+2023-12-01,Wedding,Kairouan,40
+2023-12-01,Wedding,Kasserine,37
+2023-12-01,Wedding,Kef,23
+2023-12-01,Wedding,Kébili,31
+2023-12-01,Wedding,Mahdia,27
+2023-12-01,Wedding,Manouba,48
+2023-12-01,Wedding,Monastir,26
+2023-12-01,Wedding,Médenine,29
+2023-12-01,Wedding,Nabeul,46
+2023-12-01,Wedding,Sfax,41
+2023-12-01,Wedding,Sidi Bouzid,16
+2023-12-01,Wedding,Siliana,23
+2023-12-01,Wedding,Sousse,20
+2023-12-01,Wedding,Tataouine,22
+2023-12-01,Wedding,Tozeur,28
+2023-12-01,Wedding,Tunis,38
+2023-12-01,Wedding,Zaghouan,31
+2024-04-01,Birthday,Ariana,29
+2024-04-01,Birthday,Ben Arous,17
+2024-04-01,Birthday,Bizerte,28
+2024-04-01,Birthday,Béja,21
+2024-04-01,Birthday,Gabès,38
+2024-04-01,Birthday,Gafsa,24
+2024-04-01,Birthday,Jendouba,26
+2024-04-01,Birthday,Kairouan,36
+2024-04-01,Birthday,Kasserine,29
+2024-04-01,Birthday,Kef,19
+2024-04-01,Birthday,Kébili,27
+2024-04-01,Birthday,Mahdia,28
+2024-04-01,Birthday,Manouba,41
+2024-04-01,Birthday,Monastir,42
+2024-04-01,Birthday,Médenine,33
+2024-04-01,Birthday,Nabeul,40
+2024-04-01,Birthday,Sfax,27
+2024-04-01,Birthday,Sidi Bouzid,23
+2024-04-01,Birthday,Siliana,30
+2024-04-01,Birthday,Sousse,25
+2024-04-01,Birthday,Tataouine,27
+2024-04-01,Birthday,Tozeur,28
+2024-04-01,Birthday,Tunis,22
+2024-04-01,Birthday,Zaghouan,31
+2024-05-01,Private Party,Ariana,15
+2024-05-01,Private Party,Ben Arous,13
+2024-05-01,Private Party,Bizerte,20
+2024-05-01,Private Party,Béja,11
+2024-05-01,Private Party,Gabès,15
+2024-05-01,Private Party,Gafsa,15
+2024-05-01,Private Party,Jendouba,16
+2024-05-01,Private Party,Kairouan,19
+2024-05-01,Private Party,Kasserine,15
+2024-05-01,Private Party,Kef,12
+2024-05-01,Private Party,Kébili,8
+2024-05-01,Private Party,Mahdia,7
+2024-05-01,Private Party,Manouba,22
+2024-05-01,Private Party,Monastir,9
+2024-05-01,Private Party,Médenine,6
+2024-05-01,Private Party,Nabeul,7
+2024-05-01,Private Party,Sfax,4
+2024-05-01,Private Party,Sidi Bouzid,5
+2024-05-01,Private Party,Siliana,12
+2024-05-01,Private Party,Sousse,7
+2024-05-01,Private Party,Tataouine,8
+2024-05-01,Private Party,Tozeur,15
+2024-05-01,Private Party,Tunis,12
+2024-05-01,Private Party,Zaghouan,11
+2024-06-01,Corporate Event,Ariana,14
+2024-06-01,Corporate Event,Ben Arous,6
+2024-06-01,Corporate Event,Bizerte,19
+2024-06-01,Corporate Event,Béja,13
+2024-06-01,Corporate Event,Gabès,15
+2024-06-01,Corporate Event,Gafsa,9
+2024-06-01,Corporate Event,Jendouba,9
+2024-06-01,Corporate Event,Kairouan,20
+2024-06-01,Corporate Event,Kasserine,12
+2024-06-01,Corporate Event,Kef,6
+2024-06-01,Corporate Event,Kébili,11
+2024-06-01,Corporate Event,Mahdia,9
+2024-06-01,Corporate Event,Manouba,7
+2024-06-01,Corporate Event,Monastir,7
+2024-06-01,Corporate Event,Médenine,10
+2024-06-01,Corporate Event,Nabeul,27
+2024-06-01,Corporate Event,Sfax,5
+2024-06-01,Corporate Event,Sidi Bouzid,6
+2024-06-01,Corporate Event,Siliana,6
+2024-06-01,Corporate Event,Sousse,4
+2024-06-01,Corporate Event,Tataouine,11
+2024-06-01,Corporate Event,Tozeur,6
+2024-06-01,Corporate Event,Tunis,12
+2024-06-01,Corporate Event,Zaghouan,7
+2024-07-01,Private Party,Ariana,10
+2024-07-01,Private Party,Ben Arous,5
+2024-07-01,Private Party,Bizerte,11
+2024-07-01,Private Party,Béja,15
+2024-07-01,Private Party,Gabès,14
+2024-07-01,Private Party,Gafsa,7
+2024-07-01,Private Party,Jendouba,4
+2024-07-01,Private Party,Kairouan,7
+2024-07-01,Private Party,Kasserine,10
+2024-07-01,Private Party,Kef,13
+2024-07-01,Private Party,Kébili,8
+2024-07-01,Private Party,Mahdia,8
+2024-07-01,Private Party,Manouba,8
+2024-07-01,Private Party,Monastir,4
+2024-07-01,Private Party,Médenine,11
+2024-07-01,Private Party,Nabeul,17
+2024-07-01,Private Party,Sfax,9
+2024-07-01,Private Party,Sidi Bouzid,2
+2024-07-01,Private Party,Siliana,11
+2024-07-01,Private Party,Sousse,1
+2024-07-01,Private Party,Tataouine,4
+2024-07-01,Private Party,Tozeur,7
+2024-07-01,Private Party,Tunis,10
+2024-07-01,Private Party,Zaghouan,8
+2024-08-01,Private Party,Ariana,13
+2024-08-01,Private Party,Ben Arous,3
+2024-08-01,Private Party,Bizerte,7
+2024-08-01,Private Party,Béja,14
+2024-08-01,Private Party,Gabès,9
+2024-08-01,Private Party,Gafsa,7
+2024-08-01,Private Party,Jendouba,9
+2024-08-01,Private Party,Kairouan,12
+2024-08-01,Private Party,Kasserine,11
+2024-08-01,Private Party,Kef,9
+2024-08-01,Private Party,Kébili,6
+2024-08-01,Private Party,Mahdia,8
+2024-08-01,Private Party,Manouba,16
+2024-08-01,Private Party,Monastir,9
+2024-08-01,Private Party,Médenine,15
+2024-08-01,Private Party,Nabeul,16
+2024-08-01,Private Party,Sfax,7
+2024-08-01,Private Party,Sidi Bouzid,9
+2024-08-01,Private Party,Siliana,8
+2024-08-01,Private Party,Sousse,1
+2024-08-01,Private Party,Tataouine,10
+2024-08-01,Private Party,Tozeur,12
+2024-08-01,Private Party,Tunis,11
+2024-08-01,Private Party,Zaghouan,7
+2024-09-01,Private Party,Ariana,12
+2024-09-01,Private Party,Ben Arous,5
+2024-09-01,Private Party,Bizerte,12
+2024-09-01,Private Party,Béja,7
+2024-09-01,Private Party,Gabès,6
+2024-09-01,Private Party,Gafsa,13
+2024-09-01,Private Party,Jendouba,11
+2024-09-01,Private Party,Kairouan,16
+2024-09-01,Private Party,Kasserine,11
+2024-09-01,Private Party,Kef,8
+2024-09-01,Private Party,Kébili,9
+2024-09-01,Private Party,Mahdia,7
+2024-09-01,Private Party,Manouba,19
+2024-09-01,Private Party,Monastir,13
+2024-09-01,Private Party,Médenine,11
+2024-09-01,Private Party,Nabeul,19
+2024-09-01,Private Party,Sfax,11
+2024-09-01,Private Party,Sidi Bouzid,10
+2024-09-01,Private Party,Siliana,14
+2024-09-01,Private Party,Sousse,4
+2024-09-01,Private Party,Tataouine,6
+2024-09-01,Private Party,Tozeur,8
+2024-09-01,Private Party,Tunis,9
+2024-09-01,Private Party,Zaghouan,19
+2024-09-01,Wedding,Ariana,35
+2024-09-01,Wedding,Ben Arous,23
+2024-09-01,Wedding,Bizerte,34
+2024-09-01,Wedding,Béja,32
+2024-09-01,Wedding,Gabès,42
+2024-09-01,Wedding,Gafsa,19
+2024-09-01,Wedding,Jendouba,40
+2024-09-01,Wedding,Kairouan,48
+2024-09-01,Wedding,Kasserine,36
+2024-09-01,Wedding,Kef,29
+2024-09-01,Wedding,Kébili,26
+2024-09-01,Wedding,Mahdia,27
+2024-09-01,Wedding,Manouba,25
+2024-09-01,Wedding,Monastir,22
+2024-09-01,Wedding,Médenine,28
+2024-09-01,Wedding,Nabeul,43
+2024-09-01,Wedding,Sfax,40
+2024-09-01,Wedding,Sidi Bouzid,27
+2024-09-01,Wedding,Siliana,42
+2024-09-01,Wedding,Sousse,20
+2024-09-01,Wedding,Tataouine,28
+2024-09-01,Wedding,Tozeur,37
+2024-09-01,Wedding,Tunis,43
+2024-09-01,Wedding,Zaghouan,19
+2024-12-01,Wedding,Ariana,36
+2024-12-01,Wedding,Ben Arous,27
+2024-12-01,Wedding,Bizerte,43
+2024-12-01,Wedding,Béja,35
+2024-12-01,Wedding,Gabès,30
+2024-12-01,Wedding,Gafsa,33
+2024-12-01,Wedding,Jendouba,32
+2024-12-01,Wedding,Kairouan,44
+2024-12-01,Wedding,Kasserine,32
+2024-12-01,Wedding,Kef,32
+2024-12-01,Wedding,Kébili,24
+2024-12-01,Wedding,Mahdia,22
+2024-12-01,Wedding,Manouba,37
+2024-12-01,Wedding,Monastir,31
+2024-12-01,Wedding,Médenine,39
+2024-12-01,Wedding,Nabeul,44
+2024-12-01,Wedding,Sfax,30
+2024-12-01,Wedding,Sidi Bouzid,30
+2024-12-01,Wedding,Siliana,31
+2024-12-01,Wedding,Sousse,23
+2024-12-01,Wedding,Tataouine,25
+2024-12-01,Wedding,Tozeur,23
+2024-12-01,Wedding,Tunis,42
+2024-12-01,Wedding,Zaghouan,32
+2025-01-01,Corporate Event,Ariana,18
+2025-01-01,Corporate Event,Ben Arous,6
+2025-01-01,Corporate Event,Bizerte,11
+2025-01-01,Corporate Event,Béja,11
+2025-01-01,Corporate Event,Gabès,7
+2025-01-01,Corporate Event,Gafsa,5
+2025-01-01,Corporate Event,Jendouba,10
+2025-01-01,Corporate Event,Kairouan,14
+2025-01-01,Corporate Event,Kasserine,10
+2025-01-01,Corporate Event,Kef,10
+2025-01-01,Corporate Event,Kébili,11
+2025-01-01,Corporate Event,Mahdia,7
+2025-01-01,Corporate Event,Manouba,22
+2025-01-01,Corporate Event,Monastir,6
+2025-01-01,Corporate Event,Médenine,12
+2025-01-01,Corporate Event,Nabeul,9
+2025-01-01,Corporate Event,Sfax,12
+2025-01-01,Corporate Event,Sidi Bouzid,11
+2025-01-01,Corporate Event,Siliana,10
+2025-01-01,Corporate Event,Sousse,7
+2025-01-01,Corporate Event,Tataouine,8
+2025-01-01,Corporate Event,Tozeur,3
+2025-01-01,Corporate Event,Tunis,16
+2025-01-01,Corporate Event,Zaghouan,14
+2025-02-01,Corporate Event,Ariana,36
+2025-02-01,Corporate Event,Ben Arous,19
+2025-02-01,Corporate Event,Bizerte,20
+2025-02-01,Corporate Event,Béja,19
+2025-02-01,Corporate Event,Gabès,26
+2025-02-01,Corporate Event,Gafsa,20
+2025-02-01,Corporate Event,Jendouba,30
+2025-02-01,Corporate Event,Kairouan,30
+2025-02-01,Corporate Event,Kasserine,21
+2025-02-01,Corporate Event,Kef,15
+2025-02-01,Corporate Event,Kébili,11
+2025-02-01,Corporate Event,Mahdia,17
+2025-02-01,Corporate Event,Manouba,32
+2025-02-01,Corporate Event,Monastir,16
+2025-02-01,Corporate Event,Médenine,39
+2025-02-01,Corporate Event,Nabeul,47
+2025-02-01,Corporate Event,Sfax,22
+2025-02-01,Corporate Event,Sidi Bouzid,15
+2025-02-01,Corporate Event,Siliana,23
+2025-02-01,Corporate Event,Sousse,21
+2025-02-01,Corporate Event,Tataouine,21
+2025-02-01,Corporate Event,Tozeur,24
+2025-02-01,Corporate Event,Tunis,33
+2025-02-01,Corporate Event,Zaghouan,25
+2025-03-01,Private Party,Ariana,4
+2025-03-01,Private Party,Ben Arous,8
+2025-03-01,Private Party,Bizerte,10
+2025-03-01,Private Party,Béja,13
+2025-03-01,Private Party,Gabès,7
+2025-03-01,Private Party,Gafsa,9
+2025-03-01,Private Party,Jendouba,12
+2025-03-01,Private Party,Kairouan,14
+2025-03-01,Private Party,Kasserine,13
+2025-03-01,Private Party,Kef,11
+2025-03-01,Private Party,Kébili,9
+2025-03-01,Private Party,Mahdia,9
+2025-03-01,Private Party,Manouba,13
+2025-03-01,Private Party,Monastir,8
+2025-03-01,Private Party,Médenine,16
+2025-03-01,Private Party,Nabeul,21
+2025-03-01,Private Party,Sfax,5
+2025-03-01,Private Party,Sidi Bouzid,11
+2025-03-01,Private Party,Siliana,12
+2025-03-01,Private Party,Sousse,4
+2025-03-01,Private Party,Tataouine,12
+2025-03-01,Private Party,Tozeur,8
+2025-03-01,Private Party,Tunis,8
+2025-03-01,Private Party,Zaghouan,8
+2025-05-01,Corporate Event,Ariana,13
+2025-05-01,Corporate Event,Ben Arous,3
+2025-05-01,Corporate Event,Bizerte,10
+2025-05-01,Corporate Event,Béja,17
+2025-05-01,Corporate Event,Gabès,8
+2025-05-01,Corporate Event,Gafsa,3
+2025-05-01,Corporate Event,Jendouba,11
+2025-05-01,Corporate Event,Kairouan,12
+2025-05-01,Corporate Event,Kasserine,6
+2025-05-01,Corporate Event,Kef,9
+2025-05-01,Corporate Event,Kébili,12
+2025-05-01,Corporate Event,Mahdia,4
+2025-05-01,Corporate Event,Manouba,15
+2025-05-01,Corporate Event,Monastir,4
+2025-05-01,Corporate Event,Médenine,6
+2025-05-01,Corporate Event,Nabeul,14
+2025-05-01,Corporate Event,Sfax,2
+2025-05-01,Corporate Event,Sidi Bouzid,7
+2025-05-01,Corporate Event,Siliana,8
+2025-05-01,Corporate Event,Sousse,5
+2025-05-01,Corporate Event,Tataouine,9
+2025-05-01,Corporate Event,Tozeur,11
+2025-05-01,Corporate Event,Tunis,16
+2025-05-01,Corporate Event,Zaghouan,13
+2025-06-01,Wedding,Ariana,34
+2025-06-01,Wedding,Ben Arous,37
+2025-06-01,Wedding,Bizerte,31
+2025-06-01,Wedding,Béja,25
+2025-06-01,Wedding,Gabès,31
+2025-06-01,Wedding,Gafsa,39
+2025-06-01,Wedding,Jendouba,42
+2025-06-01,Wedding,Kairouan,52
+2025-06-01,Wedding,Kasserine,42
+2025-06-01,Wedding,Kef,15
+2025-06-01,Wedding,Kébili,23
+2025-06-01,Wedding,Mahdia,20
+2025-06-01,Wedding,Manouba,31
+2025-06-01,Wedding,Monastir,18
+2025-06-01,Wedding,Médenine,40
+2025-06-01,Wedding,Nabeul,48
+2025-06-01,Wedding,Sfax,28
+2025-06-01,Wedding,Sidi Bouzid,24
+2025-06-01,Wedding,Siliana,41
+2025-06-01,Wedding,Sousse,23
+2025-06-01,Wedding,Tataouine,26
+2025-06-01,Wedding,Tozeur,35
+2025-06-01,Wedding,Tunis,30
+2025-06-01,Wedding,Zaghouan,36
+2025-09-01,Private Party,Ariana,19
+2025-09-01,Private Party,Ben Arous,11
+2025-09-01,Private Party,Bizerte,17
+2025-09-01,Private Party,Béja,9
+2025-09-01,Private Party,Gabès,10
+2025-09-01,Private Party,Gafsa,14
+2025-09-01,Private Party,Jendouba,21
+2025-09-01,Private Party,Kairouan,16
+2025-09-01,Private Party,Kasserine,16
+2025-09-01,Private Party,Kef,10
+2025-09-01,Private Party,Kébili,9
+2025-09-01,Private Party,Mahdia,15
+2025-09-01,Private Party,Manouba,20
+2025-09-01,Private Party,Monastir,9
+2025-09-01,Private Party,Médenine,18
+2025-09-01,Private Party,Nabeul,23
+2025-09-01,Private Party,Sfax,11
+2025-09-01,Private Party,Sidi Bouzid,7
+2025-09-01,Private Party,Siliana,12
+2025-09-01,Private Party,Sousse,5
+2025-09-01,Private Party,Tataouine,5
+2025-09-01,Private Party,Tozeur,10
+2025-09-01,Private Party,Tunis,17
+2025-09-01,Private Party,Zaghouan,17
+2025-12-01,Corporate Event,Ariana,12
+2025-12-01,Corporate Event,Ben Arous,11
+2025-12-01,Corporate Event,Bizerte,21
+2025-12-01,Corporate Event,Béja,18
+2025-12-01,Corporate Event,Gabès,16
+2025-12-01,Corporate Event,Gafsa,15
+2025-12-01,Corporate Event,Jendouba,19
+2025-12-01,Corporate Event,Kairouan,13
+2025-12-01,Corporate Event,Kasserine,10
+2025-12-01,Corporate Event,Kef,17
+2025-12-01,Corporate Event,Kébili,10
+2025-12-01,Corporate Event,Mahdia,13
+2025-12-01,Corporate Event,Manouba,8
+2025-12-01,Corporate Event,Monastir,8
+2025-12-01,Corporate Event,Médenine,17
+2025-12-01,Corporate Event,Nabeul,24
+2025-12-01,Corporate Event,Sfax,14
+2025-12-01,Corporate Event,Sidi Bouzid,8
+2025-12-01,Corporate Event,Siliana,14
+2025-12-01,Corporate Event,Sousse,3
+2025-12-01,Corporate Event,Tataouine,9
+2025-12-01,Corporate Event,Tozeur,10
+2025-12-01,Corporate Event,Tunis,16
+2025-12-01,Corporate Event,Zaghouan,12

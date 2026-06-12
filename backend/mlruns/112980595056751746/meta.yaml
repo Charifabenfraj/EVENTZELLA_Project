@@ -1,0 +1,8 @@
+artifact_location: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/112980595056751746
+creation_time: 1777143670827
+experiment_id: '112980595056751746'
+last_update_time: 1777143670827
+lifecycle_stage: active
+name: Price_Regression_Gradient_Boosting
+trace_location: null
+workspace: default

@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/112980595056751746/92941634d20842b9bd0f05825aad8987/artifacts
+end_time: 1777168517395
+entry_point_name: ''
+experiment_id: '112980595056751746'
+lifecycle_stage: active
+run_id: 92941634d20842b9bd0f05825aad8987
+run_name: skittish-bear-598
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777168513427
+status: 3
+tags: []
+user_id: chari

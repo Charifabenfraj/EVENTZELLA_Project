@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/ba0b816574fc46e8aae0a74ba948a7b8/artifacts
+end_time: 1777164959406
+entry_point_name: ''
+experiment_id: '984502483504791936'
+lifecycle_stage: active
+run_id: ba0b816574fc46e8aae0a74ba948a7b8
+run_name: fearless-skink-243
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777164959372
+status: 4
+tags: []
+user_id: chari

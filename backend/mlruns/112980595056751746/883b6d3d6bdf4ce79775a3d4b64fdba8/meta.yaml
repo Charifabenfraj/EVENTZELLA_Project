@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/112980595056751746/883b6d3d6bdf4ce79775a3d4b64fdba8/artifacts
+end_time: 1777170797531
+entry_point_name: ''
+experiment_id: '112980595056751746'
+lifecycle_stage: active
+run_id: 883b6d3d6bdf4ce79775a3d4b64fdba8
+run_name: placid-jay-669
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777170793758
+status: 3
+tags: []
+user_id: chari

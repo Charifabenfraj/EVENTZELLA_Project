@@ -1,0 +1,17 @@
+{
+  "model_name": "price_regression",
+  "model_type": "regression",
+  "metrics": {
+    "rmse": 18904.758972173324,
+    "mae": 16274.089586548856,
+    "r2_score": -0.3739158813841488,
+    "test_samples": 80
+  },
+  "parameters": {
+    "n_estimators": 150,
+    "max_depth": 12,
+    "learning_rate": 0.1,
+    "subsample": 0.8
+  },
+  "timestamp": "2026-04-26T03:33:17.528861"
+}

@@ -1,0 +1,15 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/8eebbd9959654e5fa91625ac818ba752/artifacts
+deleted_time: 1777166418240
+end_time: 1777143670821
+entry_point_name: ''
+experiment_id: '984502483504791936'
+lifecycle_stage: deleted
+run_id: 8eebbd9959654e5fa91625ac818ba752
+run_name: wise-croc-799
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777143670803
+status: 4
+tags: []
+user_id: chari

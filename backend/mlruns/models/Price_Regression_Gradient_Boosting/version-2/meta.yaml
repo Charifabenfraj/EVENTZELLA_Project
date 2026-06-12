@@ -1,0 +1,16 @@
+creation_timestamp: 1777166249358
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1777166249358
+model_id: m-4add14bcef9243bca07ce10219659f1f
+name: Price_Regression_Gradient_Boosting
+run_id: e7f2b236da784fb690f80d6cbdb3768d
+run_link: null
+source: models:/m-4add14bcef9243bca07ce10219659f1f
+status: READY
+status_message: null
+storage_location: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/112980595056751746/models/m-4add14bcef9243bca07ce10219659f1f/artifacts
+user_id: null
+version: 2
+workspace: default

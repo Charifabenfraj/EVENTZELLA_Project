@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/685238734087503077/a675ff57a7464bdc93363d3d3b870fa9/artifacts
+end_time: 1777645906344
+entry_point_name: ''
+experiment_id: '685238734087503077'
+lifecycle_stage: active
+run_id: a675ff57a7464bdc93363d3d3b870fa9
+run_name: bold-lark-16
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777645898354
+status: 3
+tags: []
+user_id: chari

@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/7f4ff94e99e94defbc64db9a5be07f22/artifacts
+end_time: 1777166264572
+entry_point_name: ''
+experiment_id: '984502483504791936'
+lifecycle_stage: active
+run_id: 7f4ff94e99e94defbc64db9a5be07f22
+run_name: thundering-ram-213
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777166260865
+status: 3
+tags: []
+user_id: chari

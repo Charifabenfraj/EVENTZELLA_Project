@@ -1,0 +1,8 @@
+artifact_location: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/685238734087503077
+creation_time: 1777645557301
+experiment_id: '685238734087503077'
+last_update_time: 1777645557301
+lifecycle_stage: active
+name: Chatbot_Intent_Classifier
+trace_location: null
+workspace: default

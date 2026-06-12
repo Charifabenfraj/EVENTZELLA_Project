@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/563377571345696732/444ea2881cdf4e6cb0d185fc8aede7b7/artifacts
+end_time: 1777645575529
+entry_point_name: ''
+experiment_id: '563377571345696732'
+lifecycle_stage: active
+run_id: 444ea2881cdf4e6cb0d185fc8aede7b7
+run_name: able-moose-194
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777645575468
+status: 3
+tags: []
+user_id: chari

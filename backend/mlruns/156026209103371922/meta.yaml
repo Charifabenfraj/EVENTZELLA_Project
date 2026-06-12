@@ -1,0 +1,8 @@
+artifact_location: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/156026209103371922
+creation_time: 1777670276372
+experiment_id: '156026209103371922'
+last_update_time: 1777670276372
+lifecycle_stage: active
+name: Event_Type_Encoder
+trace_location: null
+workspace: default

@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/156026209103371922/12ff844d02864ae0a41aaab758c11728/artifacts
+end_time: 1777677657121
+entry_point_name: ''
+experiment_id: '156026209103371922'
+lifecycle_stage: active
+run_id: 12ff844d02864ae0a41aaab758c11728
+run_name: debonair-snake-793
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777677653569
+status: 3
+tags: []
+user_id: chari

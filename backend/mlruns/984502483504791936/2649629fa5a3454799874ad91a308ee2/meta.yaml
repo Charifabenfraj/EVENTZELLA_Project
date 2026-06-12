@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/2649629fa5a3454799874ad91a308ee2/artifacts
+end_time: 1777166245572
+entry_point_name: ''
+experiment_id: '984502483504791936'
+lifecycle_stage: active
+run_id: 2649629fa5a3454799874ad91a308ee2
+run_name: nosy-sow-334
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777166240893
+status: 3
+tags: []
+user_id: chari

@@ -1,0 +1,16 @@
+creation_timestamp: 1777670020189
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1777670020189
+model_id: m-f36d9e76d6474509a1e34ef42fc90b65
+name: Chatbot_Intent_Classifier
+run_id: abf7003b64894bf4ba725d1c8f3c2fa0
+run_link: null
+source: models:/m-f36d9e76d6474509a1e34ef42fc90b65
+status: READY
+status_message: null
+storage_location: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/685238734087503077/models/m-f36d9e76d6474509a1e34ef42fc90b65/artifacts
+user_id: null
+version: 3
+workspace: default

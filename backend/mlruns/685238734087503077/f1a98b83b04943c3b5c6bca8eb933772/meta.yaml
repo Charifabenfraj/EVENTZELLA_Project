@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/685238734087503077/f1a98b83b04943c3b5c6bca8eb933772/artifacts
+end_time: 1777645564387
+entry_point_name: ''
+experiment_id: '685238734087503077'
+lifecycle_stage: active
+run_id: f1a98b83b04943c3b5c6bca8eb933772
+run_name: big-rook-764
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777645557312
+status: 3
+tags: []
+user_id: chari

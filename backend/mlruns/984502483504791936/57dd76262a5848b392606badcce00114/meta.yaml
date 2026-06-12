@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/984502483504791936/57dd76262a5848b392606badcce00114/artifacts
+end_time: 1777165517944
+entry_point_name: ''
+experiment_id: '984502483504791936'
+lifecycle_stage: active
+run_id: 57dd76262a5848b392606badcce00114
+run_name: brawny-fowl-576
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777165511258
+status: 3
+tags: []
+user_id: chari

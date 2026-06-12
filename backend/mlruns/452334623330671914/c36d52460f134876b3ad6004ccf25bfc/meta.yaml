@@ -1,0 +1,14 @@
+artifact_uri: file:D:\4BI8\Projet_PI_BI\deployment_ML_EVENTZELLA\backend\mlruns/452334623330671914/c36d52460f134876b3ad6004ccf25bfc/artifacts
+end_time: 1777645914145
+entry_point_name: ''
+experiment_id: '452334623330671914'
+lifecycle_stage: active
+run_id: c36d52460f134876b3ad6004ccf25bfc
+run_name: silent-worm-178
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777645906375
+status: 3
+tags: []
+user_id: chari
