@@ -1,0 +1,407 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "// FIX: collect all enriched providers after loop completes\nconst items = $input.all().map(i => i.json);\n\nreturn [{\n  json: {\n    providers: items,\n    request: $('Format Response4').first().json.request,\n    recommendations: $('Format Response4').first().json.recommendations,\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2740,
+        4360
+      ],
+      "id": "7591eaa8-9232-40b2-8e19-fdbfb583a705",
+      "name": "Aggregate Providers"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "eventzella/provider-budget-lookup",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "d6f8502a-715d-46ec-a473-c17a06a4e802",
+      "name": "Webhook Trigger3",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        860,
+        4380
+      ],
+      "webhookId": "4ba6d8b9-c8b5-43dd-9332-ca3e7371d6b9"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "number": [
+            {
+              "name": "budget",
+              "value": "={{ Number($json.body?.budget ?? $json.budget ?? 0) }}"
+            },
+            {
+              "name": "top_k",
+              "value": "={{ Number($json.body?.top_k ?? $json.top_k ?? 8) }}"
+            }
+          ],
+          "string": [
+            {
+              "name": "event_type",
+              "value": "={{ String($json.body?.event_type ?? $json.event_type ?? 'Wedding') }}"
+            },
+            {
+              "name": "city",
+              "value": "={{ String($json.body?.city ?? $json.city ?? '') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "84de083e-01a1-48db-b094-657cf530c6e0",
+      "name": "Normalize Input4",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        4380
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const requestBody = {\n  budget:$input.first().json.budget ,\n  event_type: $json.event_type,\n  city: $json.city,\n  top_k: $json.top_k,\n};\n\nreturn [{ json: { ...$json, requestBody } }];"
+      },
+      "id": "a03e44ed-8e16-4e71-b556-df3795f98811",
+      "name": "Build Request Body4",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1340,
+        4380
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/api/models/provider_budget_model/predict/",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "budget",
+              "value": "={{ $json.budget }}"
+            },
+            {
+              "name": "event_type",
+              "value": "={{ $json.event_type }}"
+            },
+            {
+              "name": "city",
+              "value": "={{ $json.city }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "id": "0f2ab188-0c9c-4780-920e-3ff1f845de1f",
+      "name": "Call Provider Budget API5",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1580,
+        4380
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// FIX: preserve request context + flatten recommendations\nconst apiResponse = $json;\nconst input = $('Build Request Body4').first().json;\nconst result = apiResponse.result || apiResponse || {};\nconst recommendations = result.recommendations || [];\n\nreturn [{\n  json: {\n    request: {\n      budget: input.budget,\n      event_type: input.event_type,\n      city: input.city,\n      top_k: input.top_k,\n    },\n    recommendations: recommendations.map(p => ({\n      provider_id: p.provider_id,\n      provider: p.provider,\n      provider_service_type: p.provider_service_type || '-',\n      city: p.city,\n      avg_price: p.avg_price,\n      fit_score: p.fit_score,\n      price_gap: p.price_gap,\n    }))\n  }\n}];"
+      },
+      "id": "cdb118e0-0c32-4d31-9290-9e2327c26130",
+      "name": "Format Response4",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1820,
+        4380
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/api/audit/provider-budget/",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "id": "22425e00-f31b-4635-9dae-a03ff3899f37",
+      "name": "Store Audit Record2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        2120,
+        4200
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2060,
+        4500
+      ],
+      "id": "f5d68a50-f03f-417e-a36d-4eaf3f34cdc9",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "value": "dim_provider",
+          "mode": "list"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "id_provider",
+              "value": "={{ $json.provider_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "MySQL Get Provider2",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2,
+      "position": [
+        2340,
+        4580
+      ],
+      "id": "f8a2c5b0-2ada-4119-85d5-d1bcda042fe1",
+      "credentials": {
+        "mySql": {
+          "id": "1T4gCtaqznTsX9v6",
+          "name": "MySQL account 6"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are an expert event planner AI.\n\nBased on the providers list below:\n{{ JSON.stringify($json.providers) }}\n\nIMPORTANT:\nEach provider may NOT have a service type.\nYou MUST infer the service type from:\n- provider name\n- context\n- price range\n\nMapping guide:\n- Venue → hotel, hall, space\n- Catering → food, restaurant\n- Decoration → design, event\n- Photography → photo, studio\n- DJ → music, entertainment\n\nClient:\n- Budget: {{ $json.request.budget }}\n- Event type: {{ $json.request.event_type }}\n- City: {{ $json.request.city }}\n\nRules:\n- Assign exactly 1 provider per service\n- Prefer highest fit_score and lowest price_gap\n- Stay within budget if possible\n- If impossible → still pick best combination\n\nOutput format:\n\nFINAL PACK:\n- Venue: name (price)\n- Catering: name (price)\n- Decoration: name (price)\n- Photography: name (price)\n- DJ: name (price)\n\nTOTAL COST: number\n\nEXPLANATION: 1–2 sentences\n\nALTERNATIVES: 1 line",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        3060,
+        4360
+      ],
+      "id": "0cbcaadd-71ff-4df1-a387-40bd14e425fb",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-120b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        3000,
+        4620
+      ],
+      "id": "be493ff7-505b-429c-9f67-fd4e6555e7b7",
+      "name": "Groq Chat Model1",
+      "credentials": {
+        "groqApi": {
+          "id": "rV25GJ9yyF7YKFDb",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// FIX: merge audit + AI reply + enriched recommendations\nconst base = $('Format Response4').first().json;\nconst audit = $('Store Audit Record2').first().json;\nconst aiReply = $input.first().json?.output || $input.first().json?.text || '';\n\n// Enrichir les recommendations avec les données MySQL (provider_service_type)\nconst mysqlProviders = $('Aggregate Providers').first().json?.providers || [];\n\nconst enrichedRecs = base.recommendations.map(rec => {\n  const mysqlMatch = mysqlProviders.find(p =>\n    String(p.id_provider) === String(rec.provider_id)\n  );\n  return {\n    ...rec,\n    provider_service_type: mysqlMatch?.service_type\n      || mysqlMatch?.provider_service_type\n      || mysqlMatch?.type\n      || rec.provider_service_type\n      || 'N/A',\n    phone:    mysqlMatch?.phone    || '',\n    email:    mysqlMatch?.email    || '',\n    website:  mysqlMatch?.website  || '',\n  };\n});\n\n// Nettoyer le markdown de l'AI pour le front\nconst cleanAI = aiReply\n  .replace(/\\*\\*(.*?)\\*\\*/g, '$1')       // bold\n  .replace(/\\*(.*?)\\*/g, '$1')           // italic\n  .replace(/#+\\s?/g, '')                 // headings\n  .replace(/\\|[-| ]+\\|[\\r\\n]?/g, '')    // table separator rows\n  .replace(/^\\|\\s?/gm, '')              // table leading pipe\n  .replace(/\\s?\\|$/gm, '')              // table trailing pipe\n  .replace(/\\n{3,}/g, '\\n\\n')           // extra blank lines\n  .trim();\n\nreturn [{\n  json: {\n    status: 'success',\n    request: base.request,\n    recommendations: enrichedRecs,\n    audit: {\n      saved:              !!audit.saved,\n      record_id:          audit.record_id ?? null,\n      alert_recommended:  !!audit.alert_recommended,\n      alert_reasons:      audit.alert_reasons || [],\n    },\n    ai_package_suggestion: cleanAI,\n    table: {\n      headers: ['Provider', 'Provider Service Type', 'City', 'Avg Price', 'Gap', 'Fit Score'],\n      rows: enrichedRecs.map(p => ([\n        p.provider,\n        p.provider_service_type,\n        p.city,\n        Number(p.avg_price).toLocaleString('fr-TN', { style: 'currency', currency: 'TND', maximumFractionDigits: 0 }),\n        Number(p.price_gap).toLocaleString('fr-TN',  { style: 'currency', currency: 'TND', maximumFractionDigits: 0 }),\n        `${Number(p.fit_score).toFixed(1)}%`,\n      ]))\n    }\n  },\n}];"
+      },
+      "id": "b808742b-57b2-4961-9043-de356eb88ee7",
+      "name": "Build Final Response1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3660,
+        4360
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "ce02bd47-dc7d-4735-86c3-e59d8dd18ddc",
+      "name": "Respond to Webhook3",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        4100,
+        4360
+      ]
+    }
+  ],
+  "connections": {
+    "Aggregate Providers": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Trigger3": {
+      "main": [
+        [
+          {
+            "node": "Normalize Input4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Input4": {
+      "main": [
+        [
+          {
+            "node": "Build Request Body4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Request Body4": {
+      "main": [
+        [
+          {
+            "node": "Call Provider Budget API5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Provider Budget API5": {
+      "main": [
+        [
+          {
+            "node": "Format Response4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Response4": {
+      "main": [
+        [
+          {
+            "node": "Store Audit Record2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "MySQL Get Provider2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate Providers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL Get Provider2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Build Final Response1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Final Response1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook3": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "17cdeb6efbc2e3e910d352d4ceb51b4b843df697ee044767e3bf7fae4083e89c"
+  }
+}

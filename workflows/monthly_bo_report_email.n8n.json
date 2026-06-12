@@ -1,0 +1,170 @@
+{
+  "name": "Monthly BO Report (Excel+PDF) -> Email",
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyMonth",
+              "dayOfMonth": 1,
+              "hour": 8,
+              "minute": 0
+            }
+          ]
+        }
+      },
+      "id": "b6b78f4f-2e76-4d1c-91c5-64b8eaa6e3c5",
+      "name": "Monthly Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "command": "python",
+        "arguments": [
+          "={{ $env.EVENTZELLA_PROJECT_ROOT + '/backend/scripts/monthly_bo_report.py' }}"
+        ]
+      },
+      "id": "2d4770ae-0a66-4e59-a3d1-7b48f9f4f6f6",
+      "name": "Generate Report",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        500,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const stdout = ($json.stdout || '').trim();\nif (!stdout) {\n  throw new Error('Report script produced empty stdout');\n}\nlet parsed;\ntry {\n  parsed = JSON.parse(stdout);\n} catch (e) {\n  throw new Error('Report stdout is not valid JSON: ' + stdout.slice(0, 500));\n}\nif (!parsed.ok) {\n  throw new Error(parsed.error || 'Report script returned ok=false');\n}\nfor (const key of ['xlsx_path','pdf_path','period']) {\n  if (!parsed[key]) throw new Error('Missing key in report JSON: ' + key);\n}\nconst norm = (p) => String(p).replace(/\\\\/g, '/');\nreturn [\n  {\n    json: {\n      ...parsed,\n      xlsx_file: norm(parsed.xlsx_path),\n      pdf_file: norm(parsed.pdf_path),\n    }\n  }\n];"
+      },
+      "id": "4f6e6954-13ae-4ad7-b70e-7fcb8a7ea0c2",
+      "name": "Parse Report JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        760,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "filePath": "={{ $json.xlsx_file }}",
+        "options": {
+          "dataPropertyName": "xlsx"
+        }
+      },
+      "id": "a6fd0e92-f35a-4f50-9b5d-0a8a4228a40b",
+      "name": "Read XLSX",
+      "type": "n8n-nodes-base.readBinaryFile",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "filePath": "={{ $json.pdf_file }}",
+        "options": {
+          "dataPropertyName": "pdf"
+        }
+      },
+      "id": "f3de3dd8-2d62-4328-8b93-6f3b8c33112c",
+      "name": "Read PDF",
+      "type": "n8n-nodes-base.readBinaryFile",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $env.MANAGEMENT_EMAIL }}",
+        "subject": "={{ 'Monthly BO Report - ' + $json.period }}",
+        "message": "={{ 'Please find attached the BO report for ' + $json.period + '.\\n\\nGenerated at (UTC): ' + $json.generated_at_utc + '\\n\\nRow counts: ' + JSON.stringify($json.row_counts) }}",
+        "options": {},
+        "attachmentsUi": {
+          "attachmentsBinary": [
+            {
+              "property": "xlsx,pdf"
+            }
+          ]
+        }
+      },
+      "id": "4b6f1f7c-745a-4d23-9994-22e5a3a3b0ad",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1540,
+        260
+      ]
+    }
+  ],
+  "connections": {
+    "Monthly Trigger": {
+      "main": [
+        [
+          {
+            "node": "Generate Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Report": {
+      "main": [
+        [
+          {
+            "node": "Parse Report JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Report JSON": {
+      "main": [
+        [
+          {
+            "node": "Read XLSX",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read XLSX": {
+      "main": [
+        [
+          {
+            "node": "Read PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read PDF": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

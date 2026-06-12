@@ -1,0 +1,438 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "hour": 8,
+              "minute": 30
+            }
+          ]
+        }
+      },
+      "id": "5bf2d044-4e3e-49d6-9dec-8a30066b4339",
+      "name": "Daily Forecast Cron2",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        6600
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "eventzella/demand-forecast-ai",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "6140dae6-bfb5-46e9-9a83-4741992eb2ea",
+      "name": "Webhook Trigger Demand Forecast2",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        6800
+      ],
+      "webhookId": "230a88b6-3d48-4c56-abeb-3cbdeafc30bd"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "number": [
+            {
+              "name": "forecast_horizon",
+              "value": "={{ Number($json.body?.forecast_horizon ?? $json.forecast_horizon ?? 6) }}"
+            },
+            {
+              "name": "alert_peak_threshold",
+              "value": "={{ Number($json.body?.alert_peak_threshold ?? $json.alert_peak_threshold ?? 25) }}"
+            }
+          ],
+          "string": [
+            {
+              "name": "city",
+              "value": "={{ String($json.body?.city ?? $json.city ?? '') }}"
+            },
+            {
+              "name": "event_type",
+              "value": "={{ String($json.body?.event_type ?? $json.event_type ?? '') }}"
+            },
+            {
+              "name": "ai_suggestion",
+              "value": "={{ String($json.body?.ai_suggestion ?? $json.ai_suggestion ?? 'yes') }}"
+            },
+            {
+              "name": "run_source",
+              "value": "={{ $json.body ? 'webhook' : 'cron' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e2c2675b-64b4-4aa0-a868-c4f8c5219d38",
+      "name": "Normalize Input Demand Forecast2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        6700
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/api/models/demand_forecast_ai/predict/",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "8b4828aa-1766-4f31-b79e-ecaaedc73b4f",
+      "name": "Call Demand Forecast Model API2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1540,
+        6700
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $('Normalize Input Demand Forecast2').first().json; const raw = $('Call Demand Forecast Model API2').first().json || {}; const result = raw.result || {}; const historical = Array.isArray(result.historical_points) ? result.historical_points : []; const forecast = Array.isArray(result.forecast_points) ? result.forecast_points : []; const peak = Array.isArray(result.peak_forecast_months) ? result.peak_forecast_months : [...forecast].sort((a, b) => Number(b.predicted_demand || 0) - Number(a.predicted_demand || 0)).slice(0, 3); const histVals = historical.map((p) => Number(p.demand || 0)); const fcVals = forecast.map((p) => Number(p.predicted_demand || 0)); const cityFilterApplied = result.city_filter_applied !== false; const eventTypeFilterApplied = result.event_type_filter_applied !== false; const avgHistory = histVals.length ? (histVals.reduce((a, b) => a + b, 0) / histVals.length) : 0; const lastHistory = histVals.length ? histVals[histVals.length - 1] : avgHistory; const firstForecast = fcVals.length ? fcVals[0] : 0; const lastForecast = fcVals.length ? fcVals[fcVals.length - 1] : firstForecast; const maxForecast = fcVals.length ? Math.max(...fcVals) : 0; const growthPct = avgHistory > 0 ? ((firstForecast - avgHistory) / avgHistory) * 100 : 0; const horizonChangePct = firstForecast > 0 ? ((lastForecast - firstForecast) / firstForecast) * 100 : 0; let pressure = 'Low'; if (growthPct >= 35 || horizonChangePct >= 20) pressure = 'High'; else if (growthPct >= 15 || horizonChangePct >= 8) pressure = 'Medium'; const actions = { pricing: pressure === 'High' ? 'increase_5_to_10_percent' : pressure === 'Medium' ? 'hold_or_increase_3_percent' : 'run_promotional_offer', staffing: pressure === 'High' ? 'add_extra_shift_or_temp_staff' : pressure === 'Medium' ? 'prepare_flexible_shift' : 'optimize_current_staffing', marketing: pressure === 'Low' ? 'boost_campaign_for_low_months' : 'focus_on_conversion_quality' }; const alerts = []; const threshold = Number(input.alert_peak_threshold || 25); if (Math.abs(growthPct) >= threshold) alerts.push(`Demand variation ${growthPct.toFixed(1)}% vs recent history (threshold ${threshold}%).`); if (String(input.city || '').trim() && !cityFilterApplied) alerts.push('City filter not applied (no exact historical match).'); if (String(input.event_type || '').trim() && !eventTypeFilterApplied) alerts.push('Event type filter not applied (no exact historical match).'); if (!historical.length) alerts.push('Historical points are empty or insufficient.'); return [{ json: { ...input, city: result.city ?? input.city, event_type: result.event_type ?? input.event_type, trend: String(result.trend || 'Stable'), insight: String(result.insight || ''), historical_points: historical, forecast_points: forecast, peak_forecast_months: peak, demand_pressure: pressure, city_filter_applied: cityFilterApplied, event_type_filter_applied: eventTypeFilterApplied, kpis: { avg_history_demand: Number(avgHistory.toFixed(2)), last_history_demand: Number(lastHistory.toFixed(2)), first_predicted_demand: Number(firstForecast.toFixed(2)), last_predicted_demand: Number(lastForecast.toFixed(2)), max_predicted_demand: Number(maxForecast.toFixed(2)), growth_percent: Number(growthPct.toFixed(2)), horizon_change_percent: Number(horizonChangePct.toFixed(2)) }, actions, alerts } }];"
+      },
+      "id": "5a9c5655-96b9-4fb6-ab64-66e7604e401f",
+      "name": "Build Forecast Intelligence2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1800,
+        6700
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.ai_suggestion }}",
+              "operation": "equal",
+              "value2": "yes"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c056bb85-6170-48d2-9af4-a2488ca927f0",
+      "name": "AI Suggestion Enabled Forecast2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2060,
+        6700
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const b = $('Build Forecast Intelligence2').first().json; const peakLines = (b.peak_forecast_months || []).map((p, i) => `${i + 1}. ${p.month}: ${p.predicted_demand}`).join('\\n'); const prompt = `Tu es un assistant de pilotage business pour Eventzella.\\n\\nContexte:\\n- Ville: ${b.city || 'ALL'}\\n- Type d'evenement: ${b.event_type || 'ALL'}\\n- Horizon: ${b.forecast_horizon} mois\\n- Trend: ${b.trend}\\n- Demand pressure: ${b.demand_pressure}\\n- KPI croissance: ${b.kpis?.growth_percent ?? 0}%\\n\\nMois de pic prevus:\\n${peakLines || 'Aucun'}\\n\\nReponds en JSON strict uniquement avec ce format:\\n{\\n  \"executive_summary\": \"...\",\\n  \"priority_actions\": [\"...\", \"...\", \"...\"],\\n  \"risk_watchlist\": [\"...\", \"...\"]\\n}`; return [{ json: { ...b, message: prompt, mode: 'domain', model: 'llama3:latest' } }];"
+      },
+      "id": "3e92bcaf-3ab0-472b-990d-899d4887fa58",
+      "name": "Build AI Prompt Forecast2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2320,
+        6420
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "reply",
+              "value": "AI disabled by user."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6d5fc001-5f9d-44d9-b132-6bfd467a78fe",
+      "name": "AI Disabled Fallback Forecast2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2600,
+        6860
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const base = $('Build Forecast Intelligence2').first().json; let ai = {}; try { ai = $('Call Chat API Forecast').first().json || {}; } catch (e) { ai = {}; } if (!ai.reply && !ai.output && !ai.text && !ai.content) { try { ai = $('AI Disabled Fallback Forecast2').first().json || ai; } catch (e) {} } const aiText = String(ai.reply || ai.output || ai.text || ai.content || '').trim(); let parsed = null; try { const match = aiText.match(/\\{[\\s\\S]*\\}/); if (match) parsed = JSON.parse(match[0]); } catch (e) { parsed = null; } if (!parsed) { parsed = { executive_summary: `Demand trend ${base.trend || 'Stable'} with pressure ${base.demand_pressure || 'Low'}.`, priority_actions: [String(base.actions?.pricing || 'hold_pricing'), String(base.actions?.staffing || 'optimize_staffing'), String(base.actions?.marketing || 'focus_marketing')], risk_watchlist: Array.isArray(base.alerts) ? base.alerts.slice(0, 3) : [] }; } return [{ json: { success: true, run_source: base.run_source, city: base.city || '', event_type: base.event_type || '', forecast_horizon: base.forecast_horizon, trend: base.trend, insight: base.insight, historical_points: base.historical_points || [], forecast_points: base.forecast_points || [], peak_forecast_months: base.peak_forecast_months || [], demand_pressure: base.demand_pressure, kpis: base.kpis || {}, actions: base.actions || {}, alerts: base.alerts || [], ai_insight: String(parsed.executive_summary || ''), priority_actions: Array.isArray(parsed.priority_actions) ? parsed.priority_actions : [], risk_watchlist: Array.isArray(parsed.risk_watchlist) ? parsed.risk_watchlist : [], raw_text: String(aiText || ''), generated_at: new Date().toISOString() } }];"
+      },
+      "id": "0dd3526a-2df4-4062-a701-d19df3d01299",
+      "name": "Build Final Response Forecast2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3120,
+        6700
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/api/audit/demand-forecast/",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "648756df-9002-4495-91b5-601a2cad6f44",
+      "name": "Save Demand Forecast Audit2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        3600,
+        6960
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.run_source }}",
+              "operation": "equal",
+              "value2": "webhook"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c28355f7-1497-4bef-86b2-0b7d6cb7b402",
+      "name": "Is Webhook Run?2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        3420,
+        6520
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "8c144a9d-4733-4d41-89b2-529177cf9d2a",
+      "name": "Respond Demand Forecast2",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        3700,
+        6500
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message }}{{ $json.message }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        2620,
+        6420
+      ],
+      "id": "e0853d0a-f95a-44ec-ae1d-b9cdba5c7bd3",
+      "name": "AI Agent7"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-120b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        2580,
+        6620
+      ],
+      "id": "1bbc31a9-a25c-4c05-b591-5dcf02199a7e",
+      "name": "Groq Chat Model7",
+      "credentials": {
+        "groqApi": {
+          "id": "rV25GJ9yyF7YKFDb",
+          "name": "Groq account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Daily Forecast Cron2": {
+      "main": [
+        [
+          {
+            "node": "Normalize Input Demand Forecast2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Trigger Demand Forecast2": {
+      "main": [
+        [
+          {
+            "node": "Normalize Input Demand Forecast2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Input Demand Forecast2": {
+      "main": [
+        [
+          {
+            "node": "Call Demand Forecast Model API2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Demand Forecast Model API2": {
+      "main": [
+        [
+          {
+            "node": "Build Forecast Intelligence2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Forecast Intelligence2": {
+      "main": [
+        [
+          {
+            "node": "AI Suggestion Enabled Forecast2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Suggestion Enabled Forecast2": {
+      "main": [
+        [
+          {
+            "node": "Build AI Prompt Forecast2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Disabled Fallback Forecast2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build AI Prompt Forecast2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Disabled Fallback Forecast2": {
+      "main": [
+        [
+          {
+            "node": "Build Final Response Forecast2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Final Response Forecast2": {
+      "main": [
+        [
+          {
+            "node": "Is Webhook Run?2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Save Demand Forecast Audit2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Webhook Run?2": {
+      "main": [
+        [
+          {
+            "node": "Respond Demand Forecast2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent7": {
+      "main": [
+        [
+          {
+            "node": "Build Final Response Forecast2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model7": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent7",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "17cdeb6efbc2e3e910d352d4ceb51b4b843df697ee044767e3bf7fae4083e89c"
+  }
+}

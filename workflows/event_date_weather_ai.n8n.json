@@ -1,0 +1,569 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "hour": 9
+            }
+          ]
+        }
+      },
+      "id": "e8887b62-fb64-4369-a8ca-1ac880f93157",
+      "name": "Daily Cron Trigger",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        600,
+        5360
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "eventzella/event-date-weather-ai",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "968a5a8d-196d-4205-b0eb-385ae2820153",
+      "name": "Webhook Trigger5",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        600,
+        5560
+      ],
+      "webhookId": "ba227588-3ad1-4963-bb64-30748c36d378"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "number": [
+            {
+              "name": "months_ahead",
+              "value": "={{ Number($json.body?.months_ahead ?? $json.months_ahead ?? 1) }}"
+            },
+            {
+              "name": "top_n_dates",
+              "value": "={{ Number($json.body?.top_n_dates ?? $json.top_n_dates ?? 10) }}"
+            }
+          ],
+          "string": [
+            {
+              "name": "event_type",
+              "value": "={{ String($json.body?.event_type ?? $json.event_type ?? 'Wedding') }}"
+            },
+            {
+              "name": "city",
+              "value": "={{ String($json.body?.city ?? $json.city ?? 'Tunis') }}"
+            },
+            {
+              "name": "include_precipitation",
+              "value": "={{ String($json.body?.include_precipitation ?? $json.include_precipitation ?? 'yes') }}"
+            },
+            {
+              "name": "ai_suggestion",
+              "value": "={{ String($json.body?.ai_suggestion ?? $json.ai_suggestion ?? 'yes') }}"
+            },
+            {
+              "name": "run_source",
+              "value": "={{ $json.body ? 'webhook' : 'cron' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b5b985ba-79fe-4eff-993b-ee07f4dd9f92",
+      "name": "Normalize Input5",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        840,
+        5560
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://geocoding-api.open-meteo.com/v1/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "name",
+              "value": "={{ $('Normalize Input5').first().json.city }}"
+            },
+            {
+              "name": "count",
+              "value": "1"
+            },
+            {
+              "name": "language",
+              "value": "fr"
+            },
+            {
+              "name": "format",
+              "value": "json"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "id": "5c242cec-5bae-432a-97ad-363eda9b6584",
+      "name": "Geocoding Open-Meteo2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1320,
+        5560
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const base = $('Normalize Input5').first().json; const r = $json.results?.[0] || {}; return [{ json: { ...base, latitude: r.latitude ?? null, longitude: r.longitude ?? null, city_resolved: r.name ?? base.city } }];"
+      },
+      "id": "7e13c800-ff10-4153-83df-787c2765fa4b",
+      "name": "Extract Coordinates2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1560,
+        5560
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.open-meteo.com/v1/forecast",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "latitude",
+              "value": "={{ $json.latitude }}"
+            },
+            {
+              "name": "longitude",
+              "value": "={{ $json.longitude }}"
+            },
+            {
+              "name": "daily",
+              "value": "weathercode,temperature_2m_max,precipitation_probability_max"
+            },
+            {
+              "name": "timezone",
+              "value": "auto"
+            },
+            {
+              "name": "forecast_days",
+              "value": "16"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "id": "7802aeec-ec52-4640-86cc-25fb1072e8fa",
+      "name": "Get Forecast2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1800,
+        5560
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const base = $('Extract Coordinates2').first().json; const d = $json.daily || {}; const dates = d.time || []; const rain = d.precipitation_probability_max || []; const tmax = d.temperature_2m_max || []; const monthsAhead = Math.max(0, Math.floor(Number(base.months_ahead ?? 1))); const topN = Math.min(30, Math.max(1, Math.floor(Number(base.top_n_dates ?? 10)))); const includePrecip = String(base.include_precipitation || 'yes') === 'yes'; const minDate = new Date(); minDate.setHours(0, 0, 0, 0); minDate.setMonth(minDate.getMonth() + monthsAhead); const scored = dates.map((day, i) => { const r = Number(rain[i] ?? 50); const t = Number(tmax[i] ?? 25); let score = 100 - r; if (t < 16 || t > 33) score -= 15; return { date: day, precipitation_probability_max: r, temperature_2m_max: t, weather_score: Math.max(0, Math.min(100, score)) }; }).sort((a, b) => b.weather_score - a.weather_score); const filtered = scored.filter((row) => { const parsed = new Date(row.date); return !Number.isNaN(parsed.getTime()) && parsed >= minDate; }); let suggested = filtered.slice(0, topN); let weatherNotice = ''; if (suggested.length === 0) { suggested = scored.slice(0, topN); if (monthsAhead > 0) weatherNotice = 'Weather API daily forecast is short-term. Showing best available near-term dates; keep long-range planning from event_date_model and re-check weather closer to event.'; } if (!includePrecip) { suggested = suggested.map((row) => ({ date: row.date, weather_score: row.weather_score })); } return [{ json: { ...base, weather_context: scored.slice(0, 14), suggested_dates_weather: suggested, weather_notice: weatherNotice } }];"
+      },
+      "id": "9a4b6c46-3f2f-4924-a6d9-bca24c6334c3",
+      "name": "Weather Date Scoring2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2040,
+        5560
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const weather = $json;\n\nconst toDateList = (arr) =>\n  Array.isArray(arr) ? arr.map((d) => String(d)).filter(Boolean) : [];\n\nfunction readModelDates() {\n  let dates = [\n    ...toDateList(weather.model_dates),\n    ...toDateList(weather.model_recommended_dates),\n  ];\n  if (dates.length) return [...new Set(dates)];\n\n  const candidates = [\n    'Call Event Date Model API1',\n    'Call Event Date Model API',\n    'Call Event Date Model API2',\n  ];\n\n  for (const nodeName of candidates) {\n    try {\n      const items = $items(nodeName, 0, 0);\n      const resp = Array.isArray(items) && items[0] ? (items[0].json || {}) : {};\n      const result = resp.result || {};\n      dates = toDateList(result.recommended_dates);\n      if (dates.length) return [...new Set(dates)];\n    } catch (e) {\n      // ignore\n    }\n  }\n\n  return [];\n}\n\nconst modelDates = readModelDates();\n\nlet weatherRows = [];\n\nif (Array.isArray(weather.suggested_dates_weather)) {\n  weatherRows = weather.suggested_dates_weather;\n} else if (\n  weather.suggested_dates_weather &&\n  typeof weather.suggested_dates_weather === 'object'\n) {\n  weatherRows = Object.values(weather.suggested_dates_weather).filter((v) => v && v.date);\n} else {\n  weatherRows = Object.keys(weather)\n    .filter((key) => key.startsWith('suggested_dates_weather'))\n    .map((key) => weather[key])\n    .filter((v) => v && v.date);\n}\n\nconst topN = Math.min(30, Math.max(1, Math.floor(Number(weather.top_n_dates ?? 10))));\nconst byDate = new Map(weatherRows.map((row) => [String(row.date), row]));\n\nconst combined = [];\n\nfor (const row of weatherRows) {\n  const date = String(row.date);\n  combined.push({\n    date,\n    source: modelDates.includes(date) ? 'weather+model' : 'weather',\n    precipitation_probability_max: row.precipitation_probability_max ?? null,\n    temperature_2m_max: row.temperature_2m_max ?? null,\n    weather_score: row.weather_score ?? null,\n  });\n}\n\nfor (const date of modelDates) {\n  if (!combined.find((x) => x.date === date)) {\n    const w = byDate.get(date);\n    combined.push({\n      date,\n      source: 'model',\n      precipitation_probability_max: w?.precipitation_probability_max ?? null,\n      temperature_2m_max: w?.temperature_2m_max ?? null,\n      weather_score: w?.weather_score ?? null,\n    });\n  }\n}\n\nconst sourceRank = (s) => (s === 'weather+model' ? 2 : s === 'weather' ? 1 : 0);\n\nconst ranked = combined\n  .sort((a, b) => Number(b.weather_score ?? -1) - Number(a.weather_score ?? -1) || sourceRank(b.source) - sourceRank(a.source))\n  .slice(0, topN);\n\nreturn [\n  {\n    json: {\n      ...weather,\n      model_dates: modelDates,\n      combined_candidates: ranked,\n      recommended_dates: ranked.map((x) => x.date),\n      next_recommended_date: ranked[0]?.date || null,\n      count: ranked.length,\n    },\n  },\n];"
+      },
+      "id": "0fa118b9-7b97-4efd-b2f0-c4fa2dee8ed3",
+      "name": "Build Combined Candidates1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2280,
+        5560
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.ai_suggestion }}",
+              "operation": "equal",
+              "value2": "yes"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "dc0d5312-9ca0-4ec9-9de5-ae04c4dfaac0",
+      "name": "AI Suggestion Enabled?1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2520,
+        5560
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const base = $('Build Combined Candidates1').first().json; const limit = Math.min(15, Math.max(3, Number(base.top_n_dates ?? 10))); const lines = (base.combined_candidates || []).slice(0, limit).map((row, i) => `${i + 1}. ${row.date} | pluie=${row.precipitation_probability_max ?? '-'} | temp=${row.temperature_2m_max ?? '-'} | score=${row.weather_score ?? '-'} | source=${row.source}`).join('\\n'); const prompt = `Tu es un assistant IA de planification evenementielle pour Eventzella.\\n\\nContexte:\\n- Type d'evenement: ${base.event_type}\\n- Ville: ${base.city_resolved || base.city}\\n- Debut souhaite: ${base.months_ahead} mois\\n- Nombre de dates demande: ${base.top_n_dates}\\n\\nDates candidates (obligatoire: choisir seulement parmi cette liste):\\n${lines}\\n\\nConsignes de recommandation:\\n- Prioriser weather_score eleve.\\n- Favoriser precipitation faible.\\n- Si source=weather+model, considerer prioritaire a score equivalent.\\n- Si horizon meteo court, rappeler la limite en une phrase.\\n\\nFormat de sortie (texte court et lisible):\\n1) Top 3 dates recommandees avec raison (1 ligne chacune)\\n2) 2 dates backup\\n3) Risque principal meteo\\n4) Conseil operationnel concret\\n\\nReponds en francais.`; return [{ json: { ...base, timeframe: `${base.months_ahead} mois`, top_n: Number(base.top_n_dates ?? 10), dates_list: lines, message: prompt, mode: 'domain', model: 'llama3:latest' } }];"
+      },
+      "id": "70fbb040-5b17-41f1-89d9-324a246246d2",
+      "name": "Build AI Prompt1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2760,
+        5460
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "reply",
+              "value": "AI suggestion disabled by user."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fc05cd31-2054-4e16-83db-2ed0e51ad02e",
+      "name": "AI Disabled Fallback1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2760,
+        5660
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const base = $('Build Combined Candidates1').first().json; let ai = $json || {}; if (!ai.reply && !ai.output && !ai.text && !ai.content) { try { ai = $('AI Agent3').first().json || ai; } catch (e) {} } if (!ai.reply && !ai.output && !ai.text && !ai.content) { try { ai = $('AI Disabled Fallback1').first().json || ai; } catch (e) {} } const aiText = String(ai.reply || ai.output || ai.text || ai.content || '').trim(); let aiParsed = null; try { const jsonMatch = aiText.match(/\\{[\\s\\S]*\\}/); if (jsonMatch) aiParsed = JSON.parse(jsonMatch[0]); } catch (e) { aiParsed = null; } if (!aiParsed) { const fallbackDates = (base.combined_candidates || []).slice(0, base.top_n_dates || 5); aiParsed = { best_dates: fallbackDates.map((d) => ({ date: d.date, score: d.weather_score ?? null, weather_summary: `Temp ${d.temperature_2m_max}°C, pluie ${d.precipitation_probability_max}%`, reason: 'Bonne condition meteo basee sur le score' })), top_recommended_date: { date: fallbackDates[0]?.date || null, explanation: 'Date avec le meilleur score meteo disponible' }, event_recommendations: ['Privilegier un evenement en exterieur si la meteo est stable', 'Prevoir un plan B en cas de changement meteo', 'Choisir un horaire en fin d\\'apres-midi pour plus de confort'], raw_text: aiText }; } const bestDates = Array.isArray(aiParsed.best_dates) ? aiParsed.best_dates : []; const topDate = aiParsed.top_recommended_date || {}; const recos = Array.isArray(aiParsed.event_recommendations) ? aiParsed.event_recommendations : []; return [{ json: { success: true, event_type: base.event_type, city: base.city, city_resolved: base.city_resolved, weather_notice: base.weather_notice || '', combined_candidates: base.combined_candidates || [], ai_recommendation: aiParsed, best_dates: bestDates, top_recommended_date: topDate, event_recommendations: recos, raw_text: String(aiParsed.raw_text || aiText || '').trim(), recommended_dates: bestDates.map((d) => d.date).filter(Boolean), next_recommended_date: topDate.date || bestDates[0]?.date || null } }];"
+      },
+      "id": "f4e4ce3b-a45c-447b-92ca-9cbb87a7dde1",
+      "name": "Build Final Response3",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3560,
+        5560
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "dc3e8a07-35b3-444f-ac23-99b5ac33ccb8",
+      "name": "Respond2",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        3920,
+        5560
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/api/audit/event-date/",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "1c2e0665-cfb6-432b-a878-05b817cb87c2",
+      "name": "Save Event Date Audit",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        3920,
+        5740
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://geocoding-api.open-meteo.com/v1/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "name",
+              "value": "={{ $json.city }}"
+            },
+            {
+              "name": "count",
+              "value": "1"
+            },
+            {
+              "name": "language",
+              "value": "fr"
+            },
+            {
+              "name": "format",
+              "value": "json"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "id": "767b40f6-6acb-459b-9c28-fd1b9377cae1",
+      "name": "Geocoding Open-Meteo3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1080,
+        5400
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        3120,
+        5260
+      ],
+      "id": "df85adae-19c6-4163-bed4-1de9f2f46f88",
+      "name": "AI Agent3"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-120b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        3040,
+        5480
+      ],
+      "id": "3a6bfa9b-e05e-40c7-ba19-032f7e684794",
+      "name": "Groq Chat Model3",
+      "credentials": {
+        "groqApi": {
+          "id": "rV25GJ9yyF7YKFDb",
+          "name": "Groq account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Daily Cron Trigger": {
+      "main": [
+        [
+          {
+            "node": "Normalize Input5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Trigger5": {
+      "main": [
+        [
+          {
+            "node": "Normalize Input5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Input5": {
+      "main": [
+        [
+          {
+            "node": "Geocoding Open-Meteo3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Geocoding Open-Meteo2": {
+      "main": [
+        [
+          {
+            "node": "Extract Coordinates2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Coordinates2": {
+      "main": [
+        [
+          {
+            "node": "Get Forecast2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Forecast2": {
+      "main": [
+        [
+          {
+            "node": "Weather Date Scoring2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Weather Date Scoring2": {
+      "main": [
+        [
+          {
+            "node": "Build Combined Candidates1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Combined Candidates1": {
+      "main": [
+        [
+          {
+            "node": "AI Suggestion Enabled?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Suggestion Enabled?1": {
+      "main": [
+        [
+          {
+            "node": "Build AI Prompt1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Disabled Fallback1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build AI Prompt1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Disabled Fallback1": {
+      "main": [
+        [
+          {
+            "node": "Build Final Response3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Final Response3": {
+      "main": [
+        [
+          {
+            "node": "Respond2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Save Event Date Audit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Geocoding Open-Meteo3": {
+      "main": [
+        [
+          {
+            "node": "Geocoding Open-Meteo2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent3": {
+      "main": [
+        [
+          {
+            "node": "Build Final Response3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "17cdeb6efbc2e3e910d352d4ceb51b4b843df697ee044767e3bf7fae4083e89c"
+  }
+}

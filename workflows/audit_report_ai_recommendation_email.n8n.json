@@ -1,0 +1,222 @@
+{
+  "name": "Eventzella - Audit Report AI Recommendation Email",
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyWeek",
+              "weekday": "monday",
+              "hour": 8,
+              "minute": 30
+            }
+          ]
+        }
+      },
+      "id": "a1",
+      "name": "Weekly Audit Cron",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "command": "={{ $env.EVENTZELLA_PYTHON_PATH || 'python' }}",
+        "arguments": [
+          "={{ $env.EVENTZELLA_PROJECT_ROOT + '/backend/scripts/read_audit_report.py' }}",
+          "={{ $env.REPORT_AUDIT_FILE_PATH || 'D:/4BI8/Projet_PI_BI/rapportaudit/BI_Audit_Report_EventZella_W11.doc' }}",
+          "--max-chars",
+          "12000"
+        ]
+      },
+      "id": "a2",
+      "name": "Execute Read Audit Report",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const stdout = String($json.stdout || '').trim(); if (!stdout) { throw new Error('Audit reader script returned empty stdout'); } let parsed; try { parsed = JSON.parse(stdout); } catch (e) { throw new Error('Invalid JSON from audit reader: ' + stdout.slice(0, 500)); } if (!parsed.ok) { throw new Error(parsed.error || 'Audit reader returned ok=false'); } const reportPath = String(parsed.report_path || '').replace(/\\\\/g, '/'); if (!reportPath) throw new Error('Missing report_path from reader output'); const fallbackUrl = 'file:///' + reportPath; return [{ json: { ...parsed, report_path: reportPath, run_at_utc: new Date().toISOString(), download_url: String($env.REPORT_AUDIT_DOWNLOAD_URL || fallbackUrl), recipient_email: String($env.MANAGEMENT_EMAIL || '') } }];"
+      },
+      "id": "a3",
+      "name": "Parse Reader Output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [740, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const base = $json; const prompt = `Tu es un consultant senior BI et gouvernance data.\\n\\nAnalyse cet extrait de rapport d'audit EventZella puis donne des recommandations actionnables.\\n\\nContraintes de sortie: JSON strict uniquement au format:\\n{\\n  \"executive_summary\": \"...\",\\n  \"top_findings\": [\"...\",\"...\",\"...\"],\\n  \"recommendations_30_days\": [\"...\",\"...\"],\\n  \"recommendations_90_days\": [\"...\",\"...\"],\\n  \"risk_level\": \"Low|Medium|High\"\\n}\\n\\nExtrait du rapport:\\n${base.content_excerpt}`; return [{ json: { ...base, ai_prompt: prompt } }];"
+      },
+      "id": "a4",
+      "name": "Build AI Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1000, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/api/chat/",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ $json.ai_prompt }}"
+            },
+            {
+              "name": "mode",
+              "value": "domain"
+            },
+            {
+              "name": "model",
+              "value": "llama3:latest"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "a5",
+      "name": "Call AI Agent",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1260, 300],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const base = $('Build AI Prompt').first().json; const aiRaw = $('Call AI Agent').first().json || {}; const rawText = String(aiRaw.reply || aiRaw.output || aiRaw.text || aiRaw.content || aiRaw.error || '').trim(); let parsed = null; try { const m = rawText.match(/\\{[\\s\\S]*\\}/); if (m) parsed = JSON.parse(m[0]); } catch (e) { parsed = null; } if (!parsed) { parsed = { executive_summary: rawText || 'AI response not structured.', top_findings: [], recommendations_30_days: [], recommendations_90_days: [], risk_level: 'Medium' }; } const toList = (arr) => Array.isArray(arr) && arr.length ? arr.map((x) => `<li style=\"margin:6px 0;\">${String(x)}</li>`).join('') : '<li style=\"margin:6px 0;\">No item provided.</li>'; const risk = String(parsed.risk_level || 'Medium'); const riskColor = risk === 'High' ? '#b71c1c' : risk === 'Low' ? '#1b5e20' : '#ef6c00'; const subject = `EventZella Audit AI Recommendations - ${base.file_name}`; const html = `<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>${subject}</title></head><body style=\"margin:0;background:#f3f0e8;font-family:Arial,sans-serif;color:#1f1a0b;\"><div style=\"max-width:760px;margin:0 auto;padding:24px;\"><div style=\"background:linear-gradient(135deg,#1f1a0b,#69521a);padding:22px;border-radius:16px 16px 0 0;color:#fff;\"><h1 style=\"margin:0;font-size:22px;\">Audit Report - AI Recommendations</h1><p style=\"margin:8px 0 0;opacity:.95;\">File: ${base.file_name}</p></div><div style=\"background:#fff;border:1px solid #dfcfaa;border-top:none;border-radius:0 0 16px 16px;padding:22px;\"><p style=\"margin-top:0;\"><strong>Execution time (UTC):</strong> ${base.run_at_utc}</p><p><strong>Risk level:</strong> <span style=\"color:${riskColor};font-weight:700;\">${risk}</span></p><h2 style=\"font-size:18px;margin:18px 0 8px;\">Executive Summary</h2><p style=\"line-height:1.7;\">${String(parsed.executive_summary || '').replace(/\\n/g, '<br>')}</p><h2 style=\"font-size:18px;margin:18px 0 8px;\">Top Findings</h2><ul style=\"padding-left:20px;\">${toList(parsed.top_findings)}</ul><h2 style=\"font-size:18px;margin:18px 0 8px;\">Recommendations (30 days)</h2><ul style=\"padding-left:20px;\">${toList(parsed.recommendations_30_days)}</ul><h2 style=\"font-size:18px;margin:18px 0 8px;\">Recommendations (90 days)</h2><ul style=\"padding-left:20px;\">${toList(parsed.recommendations_90_days)}</ul><div style=\"margin-top:24px;\"><a href=\"${base.download_url}\" style=\"display:inline-block;background:#caa04a;color:#1f1a0b;text-decoration:none;padding:12px 18px;border-radius:10px;font-weight:700;\">Download Full Audit Report</a></div><p style=\"margin-top:20px;color:#6f5a24;font-size:13px;\">The full report is also attached in this email for details.</p></div></div></body></html>`; return [{ json: { ...base, ai_raw_text: rawText, ai_structured: parsed, email_subject: subject, email_html: html } }];"
+      },
+      "id": "a6",
+      "name": "Build HTML Recommendations",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1520, 300]
+    },
+    {
+      "parameters": {
+        "filePath": "={{ $json.report_path }}",
+        "options": {
+          "dataPropertyName": "audit_report"
+        }
+      },
+      "id": "a7",
+      "name": "Read Audit Report File",
+      "type": "n8n-nodes-base.readBinaryFile",
+      "typeVersion": 1,
+      "position": [1780, 300]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $json.recipient_email || $env.MANAGEMENT_EMAIL }}",
+        "subject": "={{ $json.email_subject }}",
+        "message": "={{ $json.email_html }}",
+        "options": {},
+        "attachmentsUi": {
+          "attachmentsBinary": [
+            {
+              "property": "audit_report"
+            }
+          ]
+        }
+      },
+      "id": "a8",
+      "name": "Send Audit Recommendations Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [2040, 300]
+    }
+  ],
+  "connections": {
+    "Weekly Audit Cron": {
+      "main": [
+        [
+          {
+            "node": "Execute Read Audit Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Read Audit Report": {
+      "main": [
+        [
+          {
+            "node": "Parse Reader Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Reader Output": {
+      "main": [
+        [
+          {
+            "node": "Build AI Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build AI Prompt": {
+      "main": [
+        [
+          {
+            "node": "Call AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Build HTML Recommendations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build HTML Recommendations": {
+      "main": [
+        [
+          {
+            "node": "Read Audit Report File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Audit Report File": {
+      "main": [
+        [
+          {
+            "node": "Send Audit Recommendations Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}

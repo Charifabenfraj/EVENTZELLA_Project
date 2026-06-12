@@ -1,0 +1,299 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "eventzella/intelligent-quote",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "29022cd6-8f1f-450a-8225-8f3529b495d8",
+      "name": "Webhook Trigger Intelligent Quote",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        8940
+      ],
+      "webhookId": "1cabe092-29c5-42ae-8640-9e4d7d53b6d9"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "client_name",
+              "value": "={{ String($json.body?.client_name ?? $json.client_name ?? '') }}"
+            },
+            {
+              "name": "event_type",
+              "value": "={{ String($json.body?.event_type ?? $json.event_type ?? '') }}"
+            },
+            {
+              "name": "city",
+              "value": "={{ String($json.body?.city ?? $json.city ?? '') }}"
+            },
+            {
+              "name": "extra_notes",
+              "value": "={{ String($json.body?.extra_notes ?? $json.extra_notes ?? '') }}"
+            },
+            {
+              "name": "recipient_email",
+              "value": "={{ String($json.body?.recipient_email ?? $json.recipient_email ?? $env.MANAGEMENT_EMAIL ?? '') }}"
+            }
+          ],
+          "number": [
+            {
+              "name": "guests",
+              "value": "={{ Number($json.body?.guests ?? $json.guests ?? 0) }}"
+            },
+            {
+              "name": "target_margin",
+              "value": "={{ Number($json.body?.target_margin ?? $json.target_margin ?? 18) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "05bd1c44-d223-4747-bbfd-76f6bdc8cc83",
+      "name": "Normalize Quote Input",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        100,
+        8940
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/api/models/intelligent_quote_generator/predict/",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "event_type",
+              "value": "={{ $json.event_type }}"
+            },
+            {
+              "name": "city",
+              "value": "={{ $json.city }}"
+            },
+            {
+              "name": "guests",
+              "value": "={{ $json.guests }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 1030000
+        }
+      },
+      "id": "3a97d548-e516-4693-b18c-77d8d5e59665",
+      "name": "HTTP - Predict Quote",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        360,
+        8940
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $('Normalize Quote Input').first().json; const raw = $('HTTP - Predict Quote').first().json || {}; const apiError = raw.error ? String(raw.error) : ''; const result = raw.result || raw.data || raw; if (apiError || !result || typeof result !== 'object') { throw new Error(apiError || 'Empty or invalid quote API response'); } const lineItems = Array.isArray(result.line_items) ? result.line_items : []; const alternatives = Array.isArray(result.provider_alternatives) ? result.provider_alternatives : []; const totalQuote = Number(result.total_quote ?? 0); const baseCost = Number(result.base_estimated_cost ?? 0); const marginValue = Number(result.margin_value ?? 0); const targetMargin = Number(result.target_margin_percent ?? input.target_margin ?? 18); const clientName = String(result.client_name || input.client_name || 'Client').trim(); const eventType = String(result.event_type || input.event_type || '').trim(); const city = String(result.city || input.city || '').trim(); const summary = String(result.llm_summary || '').trim(); const quoteId = String(result.quote_id || '').trim(); return [{ json: { ...input, quote_id: quoteId, client_name: clientName, event_type: eventType, city, guests: Number(result.guests ?? input.guests ?? 0), base_estimated_cost: baseCost, target_margin_percent: targetMargin, margin_value: marginValue, total_quote: totalQuote, line_items: lineItems, provider_alternatives: alternatives, llm_summary: summary, notes: String(result.notes || input.extra_notes || ''), api_error: '' } }];"
+      },
+      "id": "6166060b-5b1c-4919-b5f6-ee865f898041",
+      "name": "Code - Normalize Quote Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        620,
+        8940
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "CREATE TABLE IF NOT EXISTS quote (id INT AUTO_INCREMENT PRIMARY KEY, quote_id VARCHAR(64) NOT NULL, client_name VARCHAR(255) NULL, event_type VARCHAR(100) NOT NULL, city VARCHAR(120) NOT NULL, guests INT NOT NULL, base_estimated_cost DOUBLE NOT NULL, target_margin_percent DOUBLE NOT NULL, margin_value DOUBLE NOT NULL, total_quote DOUBLE NOT NULL, line_items_json LONGTEXT NULL, provider_alternatives_json LONGTEXT NULL, llm_summary LONGTEXT NULL, notes LONGTEXT NULL, created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP);",
+        "options": {}
+      },
+      "id": "13fe8f47-3f1b-4e72-aede-03d1f3338423",
+      "name": "MySQL - Ensure fact_quote",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2,
+      "position": [
+        880,
+        8820
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "N2lYcYeIAHrr9qFg",
+          "name": "eventzz"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO quote (quote_id, client_name, event_type, city, guests, base_estimated_cost, target_margin_percent, margin_value, total_quote, line_items_json, provider_alternatives_json, llm_summary, notes, created_at) VALUES ('{{ $('Code - Normalize Quote Result').first().json.quote_id.replace(/'/g, \"''\") }}', '{{ $('Code - Normalize Quote Result').first().json.client_name.replace(/'/g, \"''\") }}', '{{ $('Code - Normalize Quote Result').first().json.event_type.replace(/'/g, \"''\") }}', '{{ $('Code - Normalize Quote Result').first().json.city.replace(/'/g, \"''\") }}', {{ $('Code - Normalize Quote Result').first().json.guests }}, {{ $('Code - Normalize Quote Result').first().json.base_estimated_cost }}, {{ $('Code - Normalize Quote Result').first().json.target_margin_percent }}, {{ $('Code - Normalize Quote Result').first().json.margin_value }}, {{ $('Code - Normalize Quote Result').first().json.total_quote }}, '{{ JSON.stringify($('Code - Normalize Quote Result').first().json.line_items || []).replace(/'/g, \"''\") }}', '{{ JSON.stringify($('Code - Normalize Quote Result').first().json.provider_alternatives || []).replace(/'/g, \"''\") }}', '{{ ($('Code - Normalize Quote Result').first().json.llm_summary || '').replace(/'/g, \"''\") }}', '{{ ($('Code - Normalize Quote Result').first().json.notes || '').replace(/'/g, \"''\") }}', NOW());",
+        "options": {}
+      },
+      "id": "b4a11ce9-afd7-465b-95d5-425cdc728568",
+      "name": "MySQL - Save fact_quote",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2,
+      "position": [
+        1140,
+        8940
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "N2lYcYeIAHrr9qFg",
+          "name": "eventzz"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const r = $('Code - Normalize Quote Result').first().json;\n\n// -------------------------\n// SAFE DATA\n// -------------------------\nconst lineItems = Array.isArray(r.line_items) ? r.line_items : [];\nconst alternatives = Array.isArray(r.provider_alternatives) ? r.provider_alternatives : [];\n\n// -------------------------\n// TABLE RENDERERS\n// -------------------------\nconst rowHtml = (rows) =>\n\trows.map((item) => `\n\t<tr>\n\t\t<td style=\"padding:10px;border-bottom:1px solid #e6d8b4;\">\n\t\t\t${String(item.label ?? item.provider ?? '-')}\n\t\t</td>\n\t\t<td style=\"padding:10px;border-bottom:1px solid #e6d8b4;\">\n\t\t\t${String(item.percentage ?? item.city ?? '-')}\n\t\t\t${item.percentage != null ? '%' : ''}\n\t\t</td>\n\t\t<td style=\"padding:10px;border-bottom:1px solid #e6d8b4;\">\n\t\t\t${String(item.amount ?? item.avg_price ?? item.fit_score ?? '-')}\n\t\t</td>\n\t</tr>`).join('');\n\n// -------------------------\nconst lineItemsTable = lineItems.length\n\t? `<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin-top:12px;\">\n\t\t<thead>\n\t\t\t<tr>\n\t\t\t\t<th align=\"left\" style=\"padding:10px;border-bottom:2px solid #c9a34e;\">Line Item</th>\n\t\t\t\t<th align=\"left\" style=\"padding:10px;border-bottom:2px solid #c9a34e;\">%</th>\n\t\t\t\t<th align=\"left\" style=\"padding:10px;border-bottom:2px solid #c9a34e;\">Amount</th>\n\t\t\t</tr>\n\t\t</thead>\n\t\t<tbody>${rowHtml(lineItems)}</tbody>\n\t</table>`\n\t: '<p>No line items available.</p>';\n\n// -------------------------\nconst altRows = alternatives.length\n\t? `<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin-top:12px;\">\n\t\t<thead>\n\t\t\t<tr>\n\t\t\t\t<th align=\"left\" style=\"padding:10px;border-bottom:2px solid #c9a34e;\">Provider</th>\n\t\t\t\t<th align=\"left\" style=\"padding:10px;border-bottom:2px solid #c9a34e;\">City</th>\n\t\t\t\t<th align=\"left\" style=\"padding:10px;border-bottom:2px solid #c9a34e;\">Avg Price</th>\n\t\t\t\t<th align=\"left\" style=\"padding:10px;border-bottom:2px solid #c9a34e;\">Fit Score</th>\n\t\t\t</tr>\n\t\t</thead>\n\t\t<tbody>\n\t\t\t${alternatives.map((item) => `\n\t\t\t\t<tr>\n\t\t\t\t\t<td style=\"padding:10px;border-bottom:1px solid #e6d8b4;\">${String(item.provider ?? '-')}</td>\n\t\t\t\t\t<td style=\"padding:10px;border-bottom:1px solid #e6d8b4;\">${String(item.city ?? '-')}</td>\n\t\t\t\t\t<td style=\"padding:10px;border-bottom:1px solid #e6d8b4;\">${String(item.avg_price ?? '-')}</td>\n\t\t\t\t\t<td style=\"padding:10px;border-bottom:1px solid #e6d8b4;\">${Number(item.fit_score ?? 0).toFixed(2)}%</td>\n\t\t\t\t</tr>\n\t\t\t`).join('')}\n\t\t</tbody>\n\t</table>`\n\t: '<p>No provider alternatives available.</p>';\n\n// -------------------------\n// SAFE SUMMARY (FIX IMPORTANT 🔥)\n// -------------------------\nconst summarySafe = String(r.llm_summary || '')\n\t.replace(/\\n/g, '<br>')\n\t.replace(/</g, '&lt;')\n\t.replace(/>/g, '&gt;');\n\n// -------------------------\n// SUBJECT\n// -------------------------\nconst subject = `Intelligent Quote - ${r.client_name || 'Client'} - ${r.quote_id || ''}`.trim();\n\n// -------------------------\n// HTML EMAIL\n// -------------------------\nconst html = `\n<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>${subject}</title>\n</head>\n\n<body style=\"margin:0;padding:0;background:#f6f1e3;font-family:Arial,sans-serif;color:#1f1a0b;\">\n\n<div style=\"max-width:760px;margin:0 auto;padding:24px;\">\n\n\t<!-- HEADER -->\n\t<div style=\"background:linear-gradient(135deg,#1f1a0b,#5b4611);color:#fff;padding:22px;border-radius:18px 18px 0 0;\">\n\t\t<h1 style=\"margin:0;font-size:24px;\">Intelligent Quote</h1>\n\t\t<p style=\"margin:8px 0 0;opacity:.95;\">Prepared for ${r.client_name || 'Client'}</p>\n\t</div>\n\n\t<!-- BODY -->\n\t<div style=\"background:#fff;padding:22px;border:1px solid #e6d8b4;border-top:none;border-radius:0 0 18px 18px;\">\n\n\t\t<p style=\"font-size:16px;line-height:1.6;margin-top:0;\">\n\t\t\tHello ${r.client_name || 'Client'},\n\t\t</p>\n\n\t\t<!-- SUMMARY BOX -->\n\t\t<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"margin:18px 0;border-collapse:collapse;\">\n\t\t\t<tr>\n\t\t\t\t<td style=\"padding:12px;background:#f8f4ea;border:1px solid #e6d8b4;\">\n\t\t\t\t\t<strong>Total Quote</strong><br>${Number(r.total_quote || 0).toFixed(2)}\n\t\t\t\t</td>\n\t\t\t\t<td style=\"padding:12px;background:#f8f4ea;border:1px solid #e6d8b4;\">\n\t\t\t\t\t<strong>Base Cost</strong><br>${Number(r.base_estimated_cost || 0).toFixed(2)}\n\t\t\t\t</td>\n\t\t\t\t<td style=\"padding:12px;background:#f8f4ea;border:1px solid #e6d8b4;\">\n\t\t\t\t\t<strong>Margin</strong><br>${Number(r.target_margin_percent || 0).toFixed(2)}%\n\t\t\t\t</td>\n\t\t\t</tr>\n\t\t</table>\n\n\t\t<h2 style=\"font-size:18px;margin:22px 0 10px;\">Quote Breakdown</h2>\n\t\t${lineItemsTable}\n\n\t\t<h2 style=\"font-size:18px;margin:22px 0 10px;\">Provider Alternatives</h2>\n\t\t${altRows}\n\n\t\t<h2 style=\"font-size:18px;margin:22px 0 10px;\">AI Summary</h2>\n\t\t<div style=\"background:#faf7ef;border-left:4px solid #c9a34e;padding:16px;border-radius:10px;line-height:1.7;\">\n\t\t\t${summarySafe}\n\t\t</div>\n\n\t\t${r.notes\n\t\t\t? `<p style=\"margin-top:18px;color:#6f5a24;\"><strong>Notes:</strong> ${String(r.notes)}</p>`\n\t\t\t: ''}\n\n\t\t<p style=\"margin-top:24px;color:#6f5a24;font-size:13px;\">\n\t\t\tGenerated by Eventzella Intelligent Quote Generator.\n\t\t</p>\n\n\t</div>\n</div>\n\n</body>\n</html>\n`;\n\n// -------------------------\nreturn [{\n\tjson: {\n\t\t...r,\n\t\temail_subject: subject,\n\t\temail_html: html\n\t}\n}];"
+      },
+      "id": "d6ad38b4-e5eb-4abd-a69a-3c59006d9a2a",
+      "name": "Code - Build HTML Email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1400,
+        8940
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { ok: true, quote_id: $json.quote_id, total_quote: $json.total_quote, base_estimated_cost: $json.base_estimated_cost, target_margin_percent: $json.target_margin_percent } }}",
+        "options": {}
+      },
+      "id": "6815a1e7-c167-42c0-886a-a2f857191984",
+      "name": "Respond to Webhook2",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        8940
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "charifabenfraj20@gmail.com",
+        "subject": "={{ $json.email_subject }}",
+        "message": "={{ $json.email_html }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1880,
+        9180
+      ],
+      "id": "4e490d72-d4ad-4940-8f71-5bd3cd380cac",
+      "name": "Send a message2",
+      "webhookId": "dadfe52c-2bab-4116-bf0b-655149b659c0",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YE1qkMtLWH86FbTO",
+          "name": "n8n-test"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Trigger Intelligent Quote": {
+      "main": [
+        [
+          {
+            "node": "Normalize Quote Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Quote Input": {
+      "main": [
+        [
+          {
+            "node": "HTTP - Predict Quote",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP - Predict Quote": {
+      "main": [
+        [
+          {
+            "node": "Code - Normalize Quote Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Normalize Quote Result": {
+      "main": [
+        [
+          {
+            "node": "MySQL - Ensure fact_quote",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL - Ensure fact_quote": {
+      "main": [
+        [
+          {
+            "node": "MySQL - Save fact_quote",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL - Save fact_quote": {
+      "main": [
+        [
+          {
+            "node": "Code - Build HTML Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Build HTML Email": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "17cdeb6efbc2e3e910d352d4ceb51b4b843df697ee044767e3bf7fae4083e89c"
+  }
+}
