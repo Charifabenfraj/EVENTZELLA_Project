@@ -1,0 +1,28 @@
+global:
+  smtp_smarthost: "smtp.gmail.com:587"
+  smtp_from: "charifabenfraj20@gmail.com"
+  smtp_auth_username: "charifabenfraj20@gmail.com"
+  smtp_auth_password: "jkfuojcasuwgwxcl"
+  smtp_require_tls: true
+  smtp_tls_config:
+    insecure_skip_verify: true
+
+templates:
+  - /etc/alertmanager/alertmanager.tmpl
+
+route:
+  receiver: "email"
+  group_by: ["alertname"]
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 1h
+
+receivers:
+  - name: "email"
+    email_configs:
+      - to: "charifabenfraj20@gmail.com"
+        headers:
+          subject: "[Eventzella] {{ .CommonLabels.alertname }} ({{ .Status }})"
+        html: '{{ template "email.html" . }}'
+        text: '{{ template "email.text" . }}'
+        send_resolved: true
